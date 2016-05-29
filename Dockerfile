@@ -11,7 +11,9 @@ RUN mkdir -p /usr/src/web
 WORKDIR /usr/src/web
 
 COPY package.json /usr/src/web/
-RUN npm install --production
+# RUN npm install --production
+# For now, instal dev deps to compile ES6/7 via babel.
+RUN npm install
 
 COPY . /usr/src/web
 
