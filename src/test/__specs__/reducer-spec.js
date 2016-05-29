@@ -21,7 +21,8 @@ describe('Reducer', () => {
     };
 
     const nextState = reducer(initialState, action);
-    expect(nextState.get('isLive')).to.equal(true);
+    // expect(nextState.get('isLive')).to.equal(true);
+    expect(nextState.isLive).to.equal(true);
   });
 
   it('handles REQUEST_EVENT', () => {
@@ -31,8 +32,10 @@ describe('Reducer', () => {
     };
 
     const nextState = reducer(initialState, action);
-    expect(nextState.get('selectedEvent')).to.equal('2015');
-    expect(nextState.get('isFetching')).to.equal(true);
+    // expect(nextState.get('selectedEvent')).to.equal('2015');
+    // expect(nextState.get('isFetching')).to.equal(true);
+    expect(nextState.selectedEvent).to.equal('2015');
+    expect(nextState.isFetching).to.equal(true);
   });
 
   it('handles RECEIVE_EVENT', () => {
@@ -56,14 +59,22 @@ describe('Reducer', () => {
       posts: expectedEventObject.posts
     };
 
-    const customInitialState = initialState.set('isFetching', true);
-    expect(customInitialState.get('isFetching')).to.equal(true);
+    // const customInitialState = initialState.set('isFetching', true);
+    // expect(customInitialState.get('isFetching')).to.equal(true);
+    const customInitialState = {
+      ...initialState,
+      isLive: true
+    };
 
     const nextState = reducer(customInitialState, action);
 
-    expect(nextState.get('isFetching')).to.equal(false);
-    expect(nextState.get('eventInfo')).to.deep.equal(Map(expectedEventObject.eventInfo));
-    expect(nextState.get('fetchedPostCount')).to.equal(1);
-    expect(nextState.get('posts')).to.deep.equal(fromJS(expectedEventObject.posts));
+    // expect(nextState.get('isFetching')).to.equal(false);
+    // expect(nextState.get('eventInfo')).to.deep.equal(Map(expectedEventObject.eventInfo));
+    // expect(nextState.get('fetchedPostCount')).to.equal(1);
+    // expect(nextState.get('posts')).to.deep.equal(fromJS(expectedEventObject.posts));
+    expect(nextState.isFetching).to.equal(false);
+    expect(nextState.eventInfo).to.equal(expectedEventObject.eventInfo);
+    expect(nextState.fetchedPostCount).to.equal(1);
+    expect(nextState.posts).to.equal(expectedEventObject.posts);
   });
 });
