@@ -8,7 +8,7 @@
     "startDev": "node index.dev.js",
     "test": "./node_modules/.bin/mocha --compilers js:babel-core/register --require babel-polyfill $(find src -path '*spec*')",
     "dev": "npm run startDev & webpack-dev-server --progress --color",
-    "build": "NODE_ENV=production webpack --progress --color -p --config webpack.prod.config.js"
+    "build": "NODE_ENV=production webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors --config webpack.prod.config.js"
   },
   "keywords": [],
   "author": "Scotty Vernon <scott.vernon@gmail.com> (http://wildflame.co.uk)",
