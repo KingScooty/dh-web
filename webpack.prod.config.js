@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 // var outDirectory = (process.env.NODE_ENV === 'production') ?
 //   'dist' :
@@ -20,9 +21,12 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|bower_components)/,
         loaders: ['babel']
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
+  ]
 };
