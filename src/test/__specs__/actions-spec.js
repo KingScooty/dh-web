@@ -28,23 +28,17 @@ describe('Actions', () => {
     const event = '2016';
     const json = {
       eventInfo: {
-        value: {
-          type: 'info',
-          html: '<div>Event Info</div>'
-        }
+        type: 'info',
+        html: '<div>Event Info</div>'
       },
       eventPosts: [
         {
-          value: {
-            text: 'some tweet text',
-            type: 'tweet'
-          }
+          text: 'some tweet text',
+          type: 'tweet'
         },
         {
-          value: {
-            text: 'some more tweet text',
-            type: 'tweet'
-          }
+          text: 'some more tweet text',
+          type: 'tweet'
         }
       ]
     };
@@ -52,7 +46,7 @@ describe('Actions', () => {
     const expectedAction = {
       type: types.RECEIVE_EVENT,
       event: '2016',
-      eventInfo: json.eventInfo.value,
+      eventInfo: json.eventInfo,
       fetchedPostCount: 2,
       posts: [
         {
