@@ -20,10 +20,12 @@ describe('Async actions', () => {
   it('creates RECEIVE_EVENT when fetching events has been done', () => {
 
     const infoPayload = {
-      body: {
-        type: 'info',
-        html: '<div>Event Info</div>'
-      }
+      body: [
+        {
+          type: 'info',
+          html: '<div>Event Info</div>'
+        }
+      ]
     };
 
     const postsPayload = {
@@ -35,10 +37,10 @@ describe('Async actions', () => {
       ]
     };
 
-    const expectedInfoResponse = {
+    const expectedInfoResponse = [{
       type: 'info',
       html: '<div>Event Info</div>'
-    };
+    }];
 
     const expectedPostsResponse = [
       {
