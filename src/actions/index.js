@@ -41,8 +41,12 @@ export function fetchEvent(event) {
 
     console.log('LETS DO DIS PUNKS!');
     if (process.env.NODE_ENV === 'production') {
-      host = '';
-    } else {
+      host = 'http://digital-heroes.com';
+    }
+    else if (process.env.BUILD_ENV === 'int') {
+      host = 'http://int.digital-heroes.com'
+    }
+    else {
       host = 'http://localhost:1337';
     }
 
