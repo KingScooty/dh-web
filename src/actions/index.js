@@ -37,18 +37,8 @@ export function fetchEvent(event) {
   return async dispatch => {
     dispatch(requestEvent(event));
 
-    var host;
-
-    console.log('LETS DO DIS PUNKS!');
-    if (process.env.BUILD_ENV === 'int') {
-      host = 'http://int.digital-heroes.com'
-    }
-    else if ((process.env.NODE_ENV === 'production') && (process.env.BUILD_ENV !== 'int')) {
-      host = 'http://digital-heroes.com';
-    }
-    else {
-      host = 'http://localhost:1337';
-    }
+    const VIRTUAL_HOST = process.env.VIRTUAL_HOST;
+    const host = VIRTUAL_HOST ? `http://${VIRTUAL_HOST}` : 'http://127.0.0.1:1337';
 
     const eventInfo = await fetch(`${host}/api/events/${event}/info`)
       .then((response) => {
