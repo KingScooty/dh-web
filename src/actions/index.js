@@ -43,7 +43,7 @@ export function fetchEvent(event) {
     if (process.env.BUILD_ENV === 'int') {
       host = 'http://int.digital-heroes.com'
     }
-    else if (process.env.NODE_ENV === 'production') {
+    else if ((process.env.NODE_ENV === 'production') && (process.env.BUILD_ENV !== 'int')) {
       host = 'http://digital-heroes.com';
     }
     else {
