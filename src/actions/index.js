@@ -26,9 +26,10 @@ export function receiveEvent(event, json) {
   return {
     type: RECEIVE_EVENT,
     event,
-    eventInfo: json.eventInfo.value,
+    eventInfo: json.eventInfo,
     fetchedPostCount: json.eventPosts.length,
-    posts: json.eventPosts.map(post => post.value)
+    // posts: json.eventPosts.map(post => post.value)
+    posts: json.eventPosts
   };
 }
 
@@ -36,9 +37,16 @@ export function fetchEvent(event) {
   return async dispatch => {
     dispatch(requestEvent(event));
 
+    var host;
+
     console.log('LETS DO DIS PUNKS!');
+    if (process.env.NODE_ENV === 'production') {
+      host = '';
+    } else {
+      host = 'http://localhost:1337';
+    }
 
-    const eventInfo = await fetch(`http://www.digital-heroes.com/${event}/info?format=json`)
+    const eventInfo = await fetch(`${host}/api/events/${event}/info`)
       .then((response) => {
         if (response.status >= 400) {
           throw new Error('Bad response from server');
@@ -46,7 +54,7 @@ export function fetchEvent(event) {
         return response.json();
       });
 
-    const eventPosts = await fetch(`http://www.digital-heroes.com/${event}/tweets?format=json`)
+    const eventPosts = await fetch(`${host}/api/events/${event}/tweets`)
       .then((response) => {
         if (response.status >= 400) {
           throw new Error('Bad response from server');
@@ -54,7 +62,10 @@ export function fetchEvent(event) {
         return response.json();
       });
 
-    const eventObject = { eventInfo, eventPosts };
+    const eventObject = {
+      eventInfo: eventInfo.body,
+      eventPosts: eventPosts.body
+    };
 
     console.log('ACTION FINISHED');
     return dispatch(receiveEvent(event, eventObject));
