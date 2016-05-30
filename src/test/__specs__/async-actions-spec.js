@@ -47,11 +47,11 @@ describe('Async actions', () => {
       }
     ];
 
-    nock('http://localhost:1337')
+    nock('http://127.0.0.1:1337')
       .get('/api/events/2015/info')
       .reply(200, infoPayload);
 
-    nock('http://localhost:1337')
+    nock('http://127.0.0.1:1337')
       .get('/api/events/2015/tweets')
       .reply(200, postsPayload);
 
