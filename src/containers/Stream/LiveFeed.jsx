@@ -23,16 +23,26 @@ var LiveFeed = React.createClass({
     // this.props.toggleStatus(false);
   },
 
+  getLocation: function () {
+    var location;
+    if ((typeof window != 'undefined') && (window.location.port)) {
+      location = 'http://localhost:1337';
+    }
+    else location = '';
+
+    return location;
+  },
+
   connectToSockets: function () {
     if (!socket) {
       socket = ioClient.connect(
-        'http://localhost:1337',
+        this.getLocation(),
         { path: '/api/sockets' }
       );
     }
     else {
       socket.connect(
-        'http://localhost:1337',
+        this.getLocation(),
         { path: '/api/sockets' }
       );
     }
