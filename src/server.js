@@ -15,6 +15,7 @@ const serve = require('koa-static');
 // const routes = require('./routes');
 
 web.use(serve(path.join(__dirname, 'dist')));
+web.use(serve(path.join(__dirname, 'static')));
 
 web.use(compress({
   flush: require('zlib').Z_SYNC_FLUSH
