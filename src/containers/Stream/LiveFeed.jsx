@@ -1,6 +1,9 @@
 var React = require('react');
 import { connect } from 'react-redux';
+var ioClient = require('socket.io-client');
 import { toggleStatus } from '../../actions';
+
+var socket;
 
 var LiveFeed = React.createClass({
   propTypes: {
@@ -8,11 +11,46 @@ var LiveFeed = React.createClass({
   },
 
   componentDidMount: function () {
-    this.props.toggleStatus(true);
+    this.connectToSockets();
+    // this.props.toggleStatus(true);
   },
 
   componentWillUnmount: function () {
-    this.props.toggleStatus(false);
+    socket.close();
+    socket.removeListener('connect');
+    socket.removeListener('incomingTweet');
+    socket.removeListener('disconnect');
+    // this.props.toggleStatus(false);
+  },
+
+  connectToSockets: function () {
+    if (!socket) {
+      socket = ioClient.connect(
+        'http://localhost:1337',
+        { path: '/api/sockets' }
+      );
+    }
+    else {
+      socket.connect(
+        'http://localhost:1337',
+        { path: '/api/sockets' }
+      );
+    }
+
+    socket.on('connect', () => {
+      console.log('Socket connected');
+      this.props.toggleStatus(true);
+    });
+
+    socket.on('incomingTweet', (tweet) => {
+      console.log('INCOMING EVENT: ', tweet);
+      // var newArray = this.state.tweets.slice();
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Socket disconnected');
+      this.props.toggleStatus(false);
+    });
   },
 
   render: function () {

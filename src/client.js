@@ -28,7 +28,7 @@ const store = createStore(
   applyMiddleware(thunkMiddleware)
 );
 
-console.log(store.getState());
+console.log('Hydrated state:', store.getState());
 
 import routes from './routes';
 

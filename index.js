@@ -37,5 +37,5 @@ const getServer = () => {
 };
 
 getServer().listen(3000, () => {
-  console.log('HTTP server listening on port 1337');
+  console.log('HTTP server listening on port 3000');
 });
