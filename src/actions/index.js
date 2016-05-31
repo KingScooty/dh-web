@@ -36,9 +36,19 @@ export function receiveEvent(event, json) {
 export function fetchEvent(event) {
   return async dispatch => {
     dispatch(requestEvent(event));
-
+    var host;
     const VIRTUAL_HOST = process.env.VIRTUAL_HOST;
-    const host = VIRTUAL_HOST ? `http://${VIRTUAL_HOST}` : 'http://127.0.0.1:1337';
+
+    if (VIRTUAL_HOST) {
+      host = `http://${VIRTUAL_HOST}`;
+    }
+    else if (window.location.port) {
+      host = `http://127.0.0.1:1337`;
+    }
+    else {
+      host = '';
+    }
+    // const host = VIRTUAL_HOST ? `http://${VIRTUAL_HOST}` : 'http://127.0.0.1:1337';
 
     const eventInfo = await fetch(`${host}/api/events/${event}/info`)
       .then((response) => {
@@ -72,14 +82,13 @@ export function shouldFetchEvent(state, event) {
 }
 
 export function fetchEventIfNeeded(event) {
-
   // Note that the function also receives getState()
   // which lets you choose what to dispatch next.
 
   // This is useful for avoiding a network request if
   // a cached value is already available.
 
-  return(dispatch, getState) => {
+  return (dispatch, getState) => {
     if (shouldFetchEvent(getState(), event)) {
       // Dispatch a thunk from thunk!
       return dispatch(fetchEvent(event));
