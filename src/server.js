@@ -9,16 +9,25 @@ const Koa = require('koa');
 const web = new Koa();
 
 const logger = morgan('combined');
-const serve = require('koa-static');
+// const serve = require('koa-static');
 // const minify = require('html-minifier').minify;
 
 // const routes = require('./routes');
 
-web.use(serve(path.join(__dirname, 'dist')));
-web.use(serve(path.join(__dirname, 'static')));
-
 web.use(compress({
   flush: require('zlib').Z_SYNC_FLUSH
+}));
+
+// web.use(serve(path.join(__dirname, 'dist')));
+// web.use(serve(path.join(__dirname, 'static')));
+
+var staticCache = require('koa-static-cache')
+
+web.use(staticCache(path.join(__dirname, 'dist'), {
+  maxAge: 365 * 24 * 60 * 60
+}));
+web.use(staticCache(path.join(__dirname, 'static'), {
+  maxAge: 365 * 24 * 60 * 60
 }));
 
 web.use(logger);
