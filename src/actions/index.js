@@ -42,7 +42,7 @@ export function fetchEvent(event) {
     if (VIRTUAL_HOST) {
       host = `http://${VIRTUAL_HOST}`;
     }
-    else if (window.location.port) {
+    else if ((typeof window != 'undefined') && (window.location.port)) {
       host = `http://127.0.0.1:1337`;
     }
     else {
