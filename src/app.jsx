@@ -12,7 +12,7 @@ var App = React.createClass({
     return (
       <div id="app">
         { this.props.children }
-        {/*<Home posts={this.props.posts} />*/}
+        { /* <Home posts={this.props.posts} /> */ }
       </div>
     );
   }
