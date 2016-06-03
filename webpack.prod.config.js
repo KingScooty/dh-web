@@ -5,6 +5,8 @@ var webpack = require('webpack');
 //   'dist' :
 //   'build';
 
+// Multiple entry and output points? One for server and one for client?
+
 module.exports = {
   entry: [
     'babel-polyfill',

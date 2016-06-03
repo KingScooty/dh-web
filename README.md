@@ -70,3 +70,12 @@ https://facebook.github.io/react/blog/2015/10/07/react-v0.14.html#stateless-func
   }
 }
 ```
+
+## Built folder structure
+
+`/src/` => `/dist/server.js`
+
+- dist
+  - static/client.js
+  - static/main.css
+  server.js
