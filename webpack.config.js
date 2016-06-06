@@ -10,7 +10,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'src/dist/'),
-    filename: 'bundle.js'
+    filename: 'client.js'
   },
   resolve: {
     modulesDirectories: ['node_modules'],
@@ -30,12 +30,12 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
   ],
-  devtool: 'inline-source-map',
-  devServer: {
-    hot: true,
-    proxy: {
-      '*': 'http://127.0.0.1:' + 3001
-    },
-    host: '127.0.0.1'
-  }
+  devtool: 'inline-source-map'//,
+  // devServer: {
+  //   hot: true,
+  //   proxy: {
+  //     '*': 'http://127.0.0.1:' + 3001
+  //   },
+  //   host: '127.0.0.1'
+  // }
 };

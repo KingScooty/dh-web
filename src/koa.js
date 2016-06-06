@@ -23,9 +23,9 @@ web.use(compress({
 
 var staticCache = require('koa-static-cache');
 
-// web.use(staticCache(path.join(__dirname, 'dist'), {
-//   maxAge: 365 * 24 * 60 * 60
-// }));
+web.use(staticCache(path.join(__dirname, 'dist'), {
+  maxAge: 365 * 24 * 60 * 60
+}));
 web.use(staticCache(path.join(__dirname, 'static'), {
   maxAge: 365 * 24 * 60 * 60
 }));

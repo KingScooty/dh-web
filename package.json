@@ -7,7 +7,7 @@
     "start": "node index.js",
     "startDev": "npm run start",
     "test": "VIRTUAL_HOST=127.0.0.1:1337 ./node_modules/.bin/mocha --compilers js:babel-core/register --require babel-polyfill $(find src -path '*spec*')",
-    "dev": "VIRTUAL_HOST=127.0.0.1:1337 npm start & webpack-dev-server --progress --color",
+    "dev": "VIRTUAL_HOST=127.0.0.1:1337 npm start",
     "build": "npm run buildClient && npm run buildServer",
     "buildClient": "./node_modules/.bin/webpack -p --define process.env.NODE_ENV='\"production\"' --progress --config webpack.production.config.js",
     "buildServer": "./node_modules/.bin/webpack -p --define process.env.NODE_ENV='\"production\"' --progress --config webpack.server.config.js"
