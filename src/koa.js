@@ -23,10 +23,16 @@ web.use(compress({
 
 var staticCache = require('koa-static-cache');
 
-web.use(staticCache(path.join(__dirname, 'dist'), {
-  maxAge: 365 * 24 * 60 * 60
-}));
-web.use(staticCache(path.join(__dirname, 'static'), {
+// web.use(staticCache(path.join(__dirname, 'dist'), {
+//   maxAge: 365 * 24 * 60 * 60
+// }));
+
+// If production ? development.
+// 'static' ? './temp'
+// Still not working for production.
+var staticDir = process.env.NODE_ENV === 'production' ? 'static' : '../.temp/static';
+
+web.use(staticCache(path.join(__dirname, staticDir), {
   maxAge: 365 * 24 * 60 * 60
 }));
 
