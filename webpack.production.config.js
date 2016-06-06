@@ -9,7 +9,6 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: [
-    'babel-polyfill',
     './src/client.js'
   ],
   resolve: {
@@ -17,8 +16,8 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: path.join(__dirname, 'src/dist/'),
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'dist/static/'),
+    filename: 'client.js'
   },
   module: {
     loaders: [
