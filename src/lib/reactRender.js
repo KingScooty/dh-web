@@ -106,7 +106,7 @@ const renderBody = (context, renderProps) => {
 
           <script charSet="utf-8" id="__INITIAL_STATE__" type="application/json">${safeStringify(initialState)}</script>
 
-          <script src="/static/client.js"></script>
+          <script src="/client.js"></script>
       </body>
   </html>`;
 

@@ -14,7 +14,7 @@ class ArchiveFeed extends React.Component {
 
     return (
       <div>
-        <h1>ARCHIVE FEED!</h1>
+        <h1>ARCHIVE FEEDsdfsdfsd!!</h1>
         { posts }
       </div>
     );

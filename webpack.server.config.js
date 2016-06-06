@@ -4,7 +4,7 @@ var webpack = require('webpack');
 var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  entry: './index.js',
+  entry: './src/server.js',
   target: 'node',
   resolve: {
     extensions: ['', '.js', '.jsx']
@@ -25,7 +25,8 @@ module.exports = {
   },
   plugins: [
     new webpack.IgnorePlugin(/\.(css|less)$/),
-    new webpack.BannerPlugin({banner: 'require("source-map-support").install();', raw: true, entryOnly: false })
+    new webpack.BannerPlugin('require("source-map-support").install();',
+    { raw: true, entryOnly: false })
   ],
   devtool: 'sourcemap'
 };
