@@ -40,13 +40,13 @@ web.use(staticCache(path.join(__dirname, staticDir), {
 //   maxAge: 365 * 24 * 60 * 60
 // });
 
-console.log(process.cwd());
-console.log(process.env.PWD);
-console.log(path.resolve('./'));
-console.log(require.main);
-console.log((path.join(__dirname, 'static')));
-
-console.log(__filename);
+// console.log(process.cwd());
+// console.log(process.env.PWD);
+// console.log(path.resolve('./'));
+// console.log(require.main);
+// console.log((path.join(__dirname, 'static')));
+//
+// console.log(__filename);
 
 web.use(logger);
 

@@ -58,15 +58,16 @@ const matchRoutes = async (context) => {
           console.log('redirect location:', redirectLocation);
           resolve({ redirectLocation, renderProps });
         }
+        else {
+          store.dispatch(actions.fetchEventIfNeeded(path))
+          .then(() => {
+            resolve({ redirectLocation, renderProps });
+          });
+        }
 
         // fetchData(context, renderProps).then(() => {
         //   resolve({ redirectLocation, renderProps });
         // });
-
-        store.dispatch(actions.fetchEventIfNeeded(path))
-        .then(() => {
-          resolve({ redirectLocation, renderProps });
-        });
       }
     });
   });
