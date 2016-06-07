@@ -6,6 +6,9 @@ var nodeExternals = require('webpack-node-externals');
 module.exports = {
   entry: './src/server.js',
   target: 'node',
+  node: {
+    __dirname: false
+  },
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
