@@ -1,6 +1,6 @@
-var React = require('react');
-var LiveIndicator = require('../../containers/LiveIndicator');
-var Navigation = require('../Navigation');
+import React from 'react';
+import LiveIndicator from '../../containers/LiveIndicator';
+import Navigation from '../Navigation';
 
 var Stream = React.createClass({
   propTypes: {
@@ -29,4 +29,4 @@ var Stream = React.createClass({
   }
 });
 
-module.exports = Stream;
+export default Stream;

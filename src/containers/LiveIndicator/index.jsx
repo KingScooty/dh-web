@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-var LiveIndicator = require('../../components/LiveIndicator');
+import LiveIndicator from '../../components/LiveIndicator';
 
 var LiveIndicatorContainer = React.createClass({
   propTypes: {
@@ -25,6 +25,6 @@ var mapStateToProps = function (state) {
   // return { isLive: state.get('isLive') };
 };
 
-module.exports = connect(
+export default connect(
   mapStateToProps
 )(LiveIndicatorContainer);

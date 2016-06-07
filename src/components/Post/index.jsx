@@ -106,4 +106,4 @@ const Post = React.createClass({
   }
 });
 
-module.exports = Post;
+export default Post;

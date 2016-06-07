@@ -1,8 +1,9 @@
-var React = require('react');
+import React from 'react';
 
 var Layout = React.createClass({
   propTypes: {
-    title: React.PropTypes.string
+    title: React.PropTypes.string,
+    children: React.PropTypes.node
   },
 
   render: function () {
@@ -21,4 +22,4 @@ var Layout = React.createClass({
   }
 });
 
-module.exports = Layout;
+export default Layout;

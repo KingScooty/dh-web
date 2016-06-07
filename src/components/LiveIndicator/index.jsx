@@ -1,5 +1,5 @@
-var React = require('react');
-var classNames = require('classnames');
+import React from 'react';
+import classNames from 'classnames';
 
 var LiveIndicator = React.createClass({
   propTypes: {
@@ -24,4 +24,4 @@ var LiveIndicator = React.createClass({
   }
 });
 
-module.exports = LiveIndicator;
+export default LiveIndicator;

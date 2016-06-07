@@ -3,8 +3,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Logo = require('../../components/Logo');
-const EventInfo = require('../../components/EventInfo');
+import Logo from '../../components/Logo';
+import EventInfo from '../../components/EventInfo';
 
 var Home = React.createClass({
   propTypes: {
@@ -51,6 +51,6 @@ var mapStateToProps = function (state) {
   };
 };
 
-module.exports = connect(
+export default connect(
   mapStateToProps
 )(Home);

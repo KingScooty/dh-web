@@ -60,7 +60,7 @@ var mapDispatchToProps = (dispatch) => {
 };
 
 // module.exports = Navigation;
-module.exports = connect(
+export default connect(
   null,
   mapDispatchToProps
 )(Navigation);
