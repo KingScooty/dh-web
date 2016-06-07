@@ -1,6 +1,6 @@
-const React = require('react');
+import React from 'react';
 import { connect } from 'react-redux';
-var Post = require('../../components/Post');
+import Post from '../../components/Post';
 
 class ArchiveFeed extends React.Component {
   renderPosts() {
@@ -14,7 +14,7 @@ class ArchiveFeed extends React.Component {
 
     return (
       <div>
-        <h1>ARCHIVE FEED!</h1>
+        <h1>ARCHIVE FEED!!</h1>
         { posts }
       </div>
     );

@@ -1,5 +1,5 @@
-var React = require('react');
-var classNames = require('classnames');
+import React from 'react';
+import classNames from 'classnames';
 
 var Logo = React.createClass({
   propTypes: {
@@ -31,4 +31,4 @@ var Logo = React.createClass({
   }
 });
 
-module.exports = Logo;
+export default Logo;

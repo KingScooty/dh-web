@@ -18,7 +18,7 @@ dependencies:
   override:
     - npm install
   post:
-    - npm run build
+    - NODE_ENV=production npm run build
 
 test:
   override:

@@ -11,7 +11,7 @@ const Post = React.createClass({
   propTypes: {
     screen_name: React.PropTypes.string,
     user: React.PropTypes.shape({
-      screen_name: React.PropTypes.string,
+      screen_name: React.PropTypes.string
     }),
     timestamp: React.PropTypes.string,
     created_at: React.PropTypes.string,
@@ -106,4 +106,4 @@ const Post = React.createClass({
   }
 });
 
-module.exports = Post;
+export default Post;

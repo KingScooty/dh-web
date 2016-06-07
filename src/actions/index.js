@@ -50,8 +50,12 @@ export function fetchEvent(event) {
     }
     // const host = VIRTUAL_HOST ? `http://${VIRTUAL_HOST}` : 'http://127.0.0.1:1337';
 
+    // console.log('EVENT ACTION:', event);
+
     const eventInfo = await fetch(`${host}/api/events/${event}/info`)
       .then((response) => {
+        // console.log(response.status);
+        // console.log(response);
         if (response.status >= 400) {
           throw new Error('Bad response from server');
         }
@@ -60,6 +64,8 @@ export function fetchEvent(event) {
 
     const eventPosts = await fetch(`${host}/api/events/${event}/tweets`)
       .then((response) => {
+        // console.log(response.status);
+        // console.log(response);
         if (response.status >= 400) {
           throw new Error('Bad response from server');
         }

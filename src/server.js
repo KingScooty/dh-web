@@ -1,38 +1,24 @@
 'use strict';
 
-const path = require('path');
-const compress = require('koa-compress');
-const morgan = require('koa-morgan');
+console.log(`Starting server at ${(new Date()).toISOString()}`);
+process.on('exit', () => {
+  console.log(`Process exit at ${(new Date()).toISOString()}`);
+});
 
-// middleware
-const Koa = require('koa');
-const web = new Koa();
+import spdy from 'spdy';
+import web from './koa';
 
-const logger = morgan('combined');
-// const serve = require('koa-static');
-// const minify = require('html-minifier').minify;
+const getServer = () => {
+  const server = spdy.createServer({
+    spdy: {
+      plain: true,
+      ssl: false
+    }
+  }, web.callback());
 
-// const routes = require('./routes');
+  return server;
+};
 
-web.use(compress({
-  flush: require('zlib').Z_SYNC_FLUSH
-}));
-
-// web.use(serve(path.join(__dirname, 'dist')));
-// web.use(serve(path.join(__dirname, 'static')));
-
-var staticCache = require('koa-static-cache')
-
-web.use(staticCache(path.join(__dirname, 'dist'), {
-  maxAge: 365 * 24 * 60 * 60
-}));
-web.use(staticCache(path.join(__dirname, 'static'), {
-  maxAge: 365 * 24 * 60 * 60
-}));
-
-web.use(logger);
-
-import renderReactComponents from './lib/reactRender';
-web.use(renderReactComponents);
-
-module.exports = web;
+getServer().listen(3000, () => {
+  console.log('HTTP server listening on port 3000');
+});

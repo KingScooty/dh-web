@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 // var Home = require('./containers/Home');
 
 var App = React.createClass({
@@ -12,10 +12,10 @@ var App = React.createClass({
     return (
       <div id="app">
         { this.props.children }
-        {/*<Home posts={this.props.posts} />*/}
+        { /* <Home posts={this.props.posts} /> */ }
       </div>
     );
   }
 });
 
-module.exports = App;
+export default App;

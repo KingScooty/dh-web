@@ -1,4 +1,4 @@
-import { Map, fromJS } from 'immutable';
+// import { Map, fromJS } from 'immutable';
 import { TOGGLE_STATUS, REQUEST_EVENT, RECEIVE_EVENT } from '../constants/ActionTypes';
 
 // export const initialState = fromJS({

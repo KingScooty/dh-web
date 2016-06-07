@@ -5,18 +5,22 @@ var webpack = require('webpack');
 //   'dist' :
 //   'build';
 
+// Multiple entry and output points? One for server and one for client?
+
 module.exports = {
   entry: [
-    'babel-polyfill',
     './src/client.js'
   ],
   resolve: {
-    modulesDirectories: ['node_modules', 'shared'],
+    modules: [
+      'node_modules'
+    ],
+    // modulesDirectories: ['node_modules', 'shared'],
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: path.join(__dirname, 'src/dist/'),
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'dist/static/'),
+    filename: 'client.js'
   },
   module: {
     loaders: [
@@ -29,5 +33,6 @@ module.exports = {
   },
   plugins: [
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
-  ]
+  ],
+  devtool: 'sourcemap'
 };

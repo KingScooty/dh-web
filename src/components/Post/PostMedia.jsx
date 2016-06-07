@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var PostMedia = React.createClass({
   propTypes: {
@@ -58,4 +58,4 @@ var PostMedia = React.createClass({
   }
 });
 
-module.exports = PostMedia;
+export default PostMedia;

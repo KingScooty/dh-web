@@ -1,11 +1,12 @@
 'use strict';
 
 // React
-const React = require('react');
+import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext, createMemoryHistory } from 'react-router';
 import { routerReducer } from 'react-router-redux';
 
+// minify breaks if use import
 const minify = require('html-minifier').minify;
 
 // Redux
@@ -57,15 +58,16 @@ const matchRoutes = async (context) => {
           console.log('redirect location:', redirectLocation);
           resolve({ redirectLocation, renderProps });
         }
+        else {
+          store.dispatch(actions.fetchEventIfNeeded(path))
+          .then(() => {
+            resolve({ redirectLocation, renderProps });
+          });
+        }
 
         // fetchData(context, renderProps).then(() => {
         //   resolve({ redirectLocation, renderProps });
         // });
-
-        store.dispatch(actions.fetchEventIfNeeded(path))
-        .then(() => {
-          resolve({ redirectLocation, renderProps });
-        });
       }
     });
   });
@@ -106,7 +108,7 @@ const renderBody = (context, renderProps) => {
 
           <script charSet="utf-8" id="__INITIAL_STATE__" type="application/json">${safeStringify(initialState)}</script>
 
-          <script src="/bundle.js"></script>
+          <script src="/client.js"></script>
       </body>
   </html>`;
 

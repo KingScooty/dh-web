@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 import { connect } from 'react-redux';
-var ioClient = require('socket.io-client');
+import ioClient from 'socket.io-client';
 import { toggleStatus } from '../../actions';
 
 var socket;
@@ -78,7 +78,7 @@ var mapDispatchToProps = (dispatch) => {
   };
 };
 
-module.exports = connect(
+export default connect(
   null,
   mapDispatchToProps
 )(LiveFeed);

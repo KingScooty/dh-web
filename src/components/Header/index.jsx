@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var Feed = React.createClass({
   getFeed: function () {
@@ -12,10 +12,10 @@ var Feed = React.createClass({
 
     return (
       <div>
-        {feed}
+        { feed }
       </div>
     );
   }
 });
 
-module.exports = Feed;
+export default Feed;

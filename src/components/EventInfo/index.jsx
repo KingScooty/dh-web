@@ -1,5 +1,5 @@
-var React = require('react');
-var marked = require('marked');
+import React from 'react';
+import marked from 'marked';
 
 var EventInfo = React.createClass({
   propTypes: {
@@ -49,4 +49,4 @@ var EventInfo = React.createClass({
   }
 });
 
-module.exports = EventInfo;
+export default EventInfo;
