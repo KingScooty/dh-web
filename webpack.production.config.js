@@ -12,7 +12,10 @@ module.exports = {
     './src/client.js'
   ],
   resolve: {
-    modulesDirectories: ['node_modules', 'shared'],
+    modules: [
+      'node_modules'
+    ],
+    // modulesDirectories: ['node_modules', 'shared'],
     extensions: ['', '.js', '.jsx']
   },
   output: {
@@ -30,5 +33,6 @@ module.exports = {
   },
   plugins: [
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
-  ]
+  ],
+  devtool: 'sourcemap'
 };

@@ -30,5 +30,8 @@ module.exports = {
     new webpack.IgnorePlugin(/\.(css|less)$/),
     new webpack.BannerPlugin({ banner: 'require("source-map-support").install();', raw: true, entryOnly: false })
   ],
-  devtool: 'sourcemap'
+  devtool: 'sourcemap',
+  stats: {
+    colors: true
+  }
 };

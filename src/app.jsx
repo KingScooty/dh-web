@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 // var Home = require('./containers/Home');
 
 var App = React.createClass({
@@ -18,4 +18,4 @@ var App = React.createClass({
   }
 });
 
-module.exports = App;
+export default App;

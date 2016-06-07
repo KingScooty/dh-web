@@ -13,7 +13,10 @@ module.exports = {
     filename: 'client.js'
   },
   resolve: {
-    modulesDirectories: ['node_modules'],
+    modules: [
+      'node_modules'
+    ]
+    // modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx']
   },
   module: {
@@ -30,12 +33,8 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
   ],
-  devtool: 'inline-source-map'//,
-  // devServer: {
-  //   hot: true,
-  //   proxy: {
-  //     '*': 'http://127.0.0.1:' + 3001
-  //   },
-  //   host: '127.0.0.1'
-  // }
+  devtool: 'inline-source-map',
+  stats: {
+    colors: true
+  }
 };
