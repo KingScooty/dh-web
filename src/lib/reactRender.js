@@ -1,11 +1,12 @@
 'use strict';
 
 // React
-const React = require('react');
+import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext, createMemoryHistory } from 'react-router';
 import { routerReducer } from 'react-router-redux';
 
+// minify breaks if use import
 const minify = require('html-minifier').minify;
 
 // Redux

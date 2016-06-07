@@ -5,8 +5,8 @@ process.on('exit', () => {
   console.log(`Process exit at ${(new Date()).toISOString()}`);
 });
 
-const spdy = require('spdy');
-const web = require('./koa');
+import spdy from 'spdy';
+import web from './koa';
 
 const getServer = () => {
   const server = spdy.createServer({

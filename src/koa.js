@@ -1,6 +1,6 @@
 'use strict';
 
-const path = require('path');
+import path from 'path';
 const compress = require('koa-compress');
 const morgan = require('koa-morgan');
 
@@ -53,4 +53,4 @@ web.use(logger);
 import renderReactComponents from './lib/reactRender';
 web.use(renderReactComponents);
 
-module.exports = web;
+export default web;
