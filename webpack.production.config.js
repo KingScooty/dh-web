@@ -1,5 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
+
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // var outDirectory = (process.env.NODE_ENV === 'production') ?
 //   'dist' :
@@ -28,10 +31,18 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loaders: ['babel']
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
       }
     ]
   },
+  postcss: function () {
+    return [autoprefixer];
+  },
   plugins: [
+    new ExtractTextPlugin('dist/static/main.css', {allChunks: false}),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
   ],
   devtool: 'sourcemap'
