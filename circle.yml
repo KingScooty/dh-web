@@ -18,6 +18,7 @@ dependencies:
   override:
     - npm install
   post:
+    - npm run bower_install
     - NODE_ENV=production npm run build
 
 test:

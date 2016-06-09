@@ -7,6 +7,10 @@ import twitter from 'twitter-text';
 
 import PostMedia from './PostMedia';
 
+if (typeof window !== 'undefined') {
+  require('./sass/main.scss');
+}
+
 const Post = React.createClass({
   propTypes: {
     screen_name: React.PropTypes.string,
