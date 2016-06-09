@@ -84,27 +84,42 @@ const Post = React.createClass({
     return (
       <div className="stream-post">
 
-        <div className="stream-post__aside">
-          <a href={ statusUrl } target="_blank">
-            <TimeAgo className="stream-post__timeago" date={ timestamp } />
-          </a>
-        </div>
+        <div className="stream-post__container">
 
-        <div className="stream-post__profile-image">
-          <img src={ profileImage } />
-        </div>
+          <div className="Media">
+            <div className="Media-figure">
 
-        <div className="stream-post__screen-name">
-          <a href={ screenName.url }>@{ screenName.text }</a>
-        </div>
+              <div className="stream-post__profile-image">
+                <img src={ profileImage } />
+              </div>
 
-        <div {...postText} className="stream-post__text" />
+            </div>
 
-        <div className="stream-post__timestamp">
-          <a href={ statusUrl } target="_blank">{ timestampFormatted }</a>
+            <div className="Media-body">
+
+              <p className="stream-post__screen-name">
+                <a href={ screenName.url }>@{ screenName.text }</a>
+              </p>
+
+              <p {...postText} className="stream-post__text" />
+
+              <div className="stream-post__timestamp caption">
+                <a href={ statusUrl } target="_blank">{ timestampFormatted }</a>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="stream-post__aside caption">
+            <a href={ statusUrl } target="_blank">
+              <TimeAgo className="stream-post__timeago" date={ timestamp } />
+            </a>
+          </div>
+
         </div>
 
         <PostMedia extended_entities={ this.props.extended_entities } entities={ this.props.entities } media={ this.props.media } href={ statusUrl } />
+
       </div>
     );
   }

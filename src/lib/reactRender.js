@@ -98,13 +98,13 @@ const renderBody = (context, renderProps) => {
   const initialState = store.getState();
 
   const html = `<!DOCTYPE html>
-  <html>
+  <html class="typeset">
       <head>
           <meta charset="utf-8" />
           <title>{head.title}</title>
           <link rel="stylesheet" href="/css/main.css">
       </head>
-      <body>
+      <body class="show-grid">
           <div id="app">${body}</div>
 
           <script charSet="utf-8" id="__INITIAL_STATE__" type="application/json">${safeStringify(initialState)}</script>

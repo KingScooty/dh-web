@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-// var autoprefixer = require('autoprefixer');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: [
@@ -39,9 +39,9 @@ module.exports = {
       }
     ]
   },
-  // postcss: function () {
-  //   return [autoprefixer];
-  // },
+  postcss: function () {
+    return [autoprefixer];
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),

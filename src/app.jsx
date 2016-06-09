@@ -10,7 +10,7 @@ var App = React.createClass({
 
   render: function () {
     return (
-      <div id="app" className="typeset">
+      <div id="app" className="">
         { this.props.children }
         { /* <Home posts={this.props.posts} /> */ }
       </div>

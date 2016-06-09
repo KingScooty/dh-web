@@ -21,8 +21,10 @@ var Stream = React.createClass({
         </div>
 
         <div className="stream__body">
-          { live }
-          { archive }
+          <div className="stream__body-wrapper">
+            { live }
+            { archive }
+          </div>
         </div>
       </div>
     );
