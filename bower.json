@@ -16,6 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "bbc-grandstand": "git@github.com:bbc/bbc-grandstand.git#^3.1.4"
+    "sassline": "^2.1.2"
   }
 }
