@@ -12,6 +12,13 @@
   background-size: 100% 1rem;
 }
 
+.fade-appear {
+  opacity: 0.01;
+}
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity .3s ease-in-out;
+}
 
 #app {
   max-width: 640px;
