@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "bower_install": "./node_modules/.bin/bower install",
     "start": "node index.js",
     "startDev": "npm run start",
     "test": "VIRTUAL_HOST=127.0.0.1:1337 ./node_modules/.bin/mocha --compilers js:babel-core/register --require babel-polyfill $(find src -path '*spec*')",

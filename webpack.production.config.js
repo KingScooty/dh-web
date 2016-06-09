@@ -42,7 +42,8 @@ module.exports = {
     return [autoprefixer];
   },
   plugins: [
-    new ExtractTextPlugin('dist/static/main.css', {allChunks: false}),
+    // new webpack.optimize.DedupePlugin(),
+    new ExtractTextPlugin('css/main.css', {allChunks: false}),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
   ],
   devtool: 'sourcemap'

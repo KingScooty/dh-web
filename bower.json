@@ -1,0 +1,21 @@
+{
+  "name": "dh-web",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Scotty Vernon <scott.vernon@gmail.com> (http://wildflame.co.uk)"
+  ],
+  "license": "ISC",
+  "homepage": "http://digitalheroes.uk",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bbc-grandstand": "git@github.com:bbc/bbc-grandstand.git#^3.1.4"
+  }
+}

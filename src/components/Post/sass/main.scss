@@ -1,3 +1,28 @@
+@import '../../../../bower_components/bbc-grandstand/grandstand';
+
+#app {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+h1 {
+  @include gel-typography('trafalgar-bold');
+}
+
+h2 {
+  @include gel-typography('double-pica-bold');
+}
+
+h3 {
+  @include gel-typography('pica-bold');
+}
+
+.event {
+  @include gel-typography('long-primer');
+}
+
 .stream-post {
-  background: red;
+  margin-bottom: double($gel-spacing-unit);
+  // background: blue;
+  @include gel-typography('long-primer');
 }
