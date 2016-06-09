@@ -2,8 +2,14 @@
 @import '../../../../bower_components/sassline/assets/sass/sassline-base';
 
 #app {
-  max-width: 500px;
+  max-width: 640px;
   margin: 0 auto;
+  padding: 0 16px;
+  .stream-post__media
+  img {
+    width: 100%;
+    max-width: 640px;
+  }
 }
 
 // h1 {
