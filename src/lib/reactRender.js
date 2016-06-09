@@ -102,6 +102,7 @@ const renderBody = (context, renderProps) => {
       <head>
           <meta charset="utf-8" />
           <title>{head.title}</title>
+          <link rel="stylesheet" href="/css/main.css">
       </head>
       <body>
           <div id="app">${body}</div>
