@@ -1,5 +1,6 @@
 // @import '../../../../bower_components/bbc-grandstand/grandstand';
 @import '../../../../bower_components/sassline/assets/sass/sassline-base';
+// @import "~inuit-media/objects.media";
 
 #app {
   max-width: 640px;
@@ -12,24 +13,86 @@
   }
 }
 
-// h1 {
-//   @include gel-typography('trafalgar-bold');
+.stream-post {
+  // display: flex;
+}
+
+
+.Media {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1em;
+}
+
+.Media-figure {
+  margin-right: 1em;
+}
+
+.Media-body {
+  flex: 1;
+}
+.Media-body,
+.Media-body :last-child {
+  margin-bottom: 0;
+}
+
+.Media-title {
+  margin: 0 0 .5em;
+}
+
+.Media--center {
+  align-items: center;
+}
+
+.Media--reverse > .Media-figure {
+  order: 1;
+  margin: 0 0 0 1em;
+}
+
+
+// .stream-post__profile-image {
+//   position: relative;
+//   height: 100%;
+//   img {
+//     position: relative;
+//     z-index:1;
+//   }
+// }
+// .stream-post__profile-image:after {
+//   content: '';
+//   position: absolute;
+//   left: 50%;
+//   margin-left: -5px;
+//   height: 100%;
+//   width: 10px;
+//   background-color: red;
+//   z-index: 0;
+// }
+
+// .gs-o-media {
+//     @include clearfix;
+//     display: block; /* [1] */
 // }
 //
-// h2 {
-//   @include gel-typography('double-pica-bold');
+// .gs-o-media__img {
+//     float: left;
+//     margin-right: 1rem;
+//
+//     > img {
+//         display: block;
+//     }
 // }
 //
-// h3 {
-//   @include gel-typography('pica-bold');
-// }
+// /**
+//  * 1. Remove any rogue margin-bottom of the body or last
+//  *    nested element
+//  */
+// .gs-o-media__body {
+//     display: block;
+//     overflow: hidden;
 //
-// .event {
-//   @include gel-typography('long-primer');
-// }
-//
-// .stream-post {
-//   margin-bottom: double($gel-spacing-unit);
-//   // background: blue;
-//   @include gel-typography('long-primer');
+//     &,
+//     > :last-child {
+//         margin-bottom: 0; /* [1] */
+//     }
 // }
