@@ -22,25 +22,29 @@ var PostMedia = React.createClass({
     href: React.PropTypes.string
   },
 
-  getImgRatio: function (size) {
-    
+  getImgRatio: function (media) {
+    var width;
+    var height;
+
+    if (media.sizes && media.sizes.large) {
+      width = media.sizes.large.w;
+      height = media.sizes.large.h;
+
+      return width > height ? '4by3' : '3by4';
+    }
   },
 
   imgElement: function (media) {
     return media.map((media, index) => {
-      var height;
-
-      if (media.sizes && media.sizes.large && media.sizes.large.h) {
-        height = media.sizes.large.h;
-      }
+      var ratio = this.getImgRatio(media);
 
       return (
         <div className="stream-post__media-item" key={ index }>
           <a href={ this.props.href }>
-            <LazyLoad height={ height } offset={ 500 }>
+            <LazyLoad offset={ 500 }>
               <ReactCSSTransitionGroup
                 transitionName="fade"
-                transitionAppear={ true }
+                transitionAppear
                 transitionAppearTimeout={ 300 }
                 transitionEnter={ false }
                 transitionLeave={ false }
