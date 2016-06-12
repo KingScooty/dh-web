@@ -6,6 +6,7 @@ import TimeAgo from 'react-timeago';
 import twitter from 'twitter-text';
 
 import PostMedia from './PostMedia';
+import VerticalRhythm from '../_shared/VerticalRhythm';
 
 if (typeof window !== 'undefined') {
   require('./sass/main.scss');
@@ -95,18 +96,20 @@ const Post = React.createClass({
 
             </div>
 
-            <div className="Media-body">
+            <VerticalRhythm>
+              <div className="Media-body">
+                <p className="stream-post__screen-name">
+                  <a href={ screenName.url }>@{ screenName.text }</a>
+                </p>
 
-              <p className="stream-post__screen-name">
-                <a href={ screenName.url }>@{ screenName.text }</a>
-              </p>
+                <p {...postText} className="stream-post__text zeta" />
 
-              <p {...postText} className="stream-post__text" />
+                <div className="stream-post__timestamp caption">
+                  <a href={ statusUrl } target="_blank">{ timestampFormatted }</a>
+                </div>
 
-              <div className="stream-post__timestamp caption">
-                <a href={ statusUrl } target="_blank">{ timestampFormatted }</a>
               </div>
-            </div>
+            </VerticalRhythm>
 
           </div>
 

@@ -27,7 +27,7 @@ html {
 }
 .fade-appear.fade-appear-active {
   opacity: 1;
-  transition: opacity .3s ease-in-out;
+  transition: opacity .4s ease-in-out;
 }
 
 #app {
@@ -36,8 +36,12 @@ html {
   padding: 0 20px;
 }
 
+/*
+ * 1. Need to factor in the border width on .stream__body-wrapper
+ */
+
 .stream__body {
-  padding-left: 136px;
+  padding-left: 131px;// - 5px; /*[1]*/
 }
 
 .stream__body-wrapper {
@@ -46,7 +50,7 @@ html {
 
 .stream-post {
   position: relative;
-  margin-left: -136px - 5px;
+  margin-left: -136px;
 }
 
 .stream-post__container {
@@ -60,8 +64,17 @@ html {
   top: 0;
 }
 
+.u-crop-rounded {
+  border-radius: 5px;
+  overflow: hidden
+}
+
 .stream-post__media-item {
   margin-bottom: 1rem;
+  // need to move this to the container when cropping.
+  img {
+    border-radius: 5px;
+  }
 }
 
 .Media {

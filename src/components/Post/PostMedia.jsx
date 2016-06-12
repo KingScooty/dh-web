@@ -1,17 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PostMediaImage from './PostMediaImage';
-import ReactHeight from 'react-height';
-
-// var calculateRhythm = function calculateRhythm(height) {
-//   var bodyFontSizePx = getComputedStyle(document.body).getPropertyValue('font-size');
-//   var bodyLineHeightPx = getComputedStyle(document.body).getPropertyValue('line-height');
-//   var bodyLineHeightRem = bodyLineHeightPx / bodyFontSizePx;
-//
-//   var baseline = bodyLineHeightPx / 2;
-//   var remainder = height % baseline;
-//   var invertRemainder = baseline - remainder;
-// };
+// import ReactHeight from 'react-height';
 
 var PostMedia = React.createClass({
   propTypes: {

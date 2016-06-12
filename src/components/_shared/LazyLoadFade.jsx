@@ -5,11 +5,11 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 class LazyLoadFade extends React.Component {
   render() {
     return (
-      <LazyLoad offset={ 500 }>
+      <LazyLoad offset={ 800 }>
         <ReactCSSTransitionGroup
           transitionName="fade"
           transitionAppear
-          transitionAppearTimeout={ 300 }
+          transitionAppearTimeout={ 400 }
           transitionEnter={ false }
           transitionLeave={ false }
           >
