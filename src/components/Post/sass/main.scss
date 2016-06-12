@@ -33,7 +33,7 @@ html {
 #app {
   max-width: 640px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 20px;
 }
 
 .stream__body {
@@ -46,7 +46,7 @@ html {
 
 .stream-post {
   position: relative;
-  margin-left: -136px;
+  margin-left: -136px - 5px;
 }
 
 .stream-post__container {
