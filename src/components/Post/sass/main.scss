@@ -25,11 +25,6 @@
   max-width: 640px;
   margin: 0 auto;
   padding: 0 1rem;
-  .stream-post__media
-  img {
-    width: 100%;
-    max-width: 640px;
-  }
 }
 
 .stream__body {
@@ -54,6 +49,10 @@
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.stream-post__media-item {
+  margin-bottom: 1rem;
 }
 
 .Media {
