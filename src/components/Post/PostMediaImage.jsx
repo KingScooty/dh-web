@@ -24,13 +24,13 @@ class PostMediaImage extends Component {
 
     return (
       <div className="u-crop-rounded">
-        {/*<VerticalRhythm>*/}
+        <VerticalRhythm>
           <ResponsiveImage { ...this.props.sizes }>
             <LazyLoadFade>
               <img src={ imgUrl } />
             </LazyLoadFade>
           </ResponsiveImage>
-        {/*</VerticalRhythm>*/}
+        </VerticalRhythm>
       </div>
     );
   }

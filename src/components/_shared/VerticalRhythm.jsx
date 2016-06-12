@@ -19,6 +19,7 @@ class VerticalRhythm extends Component {
   }
 
   handleVerticalRhythm(height) {
+    console.log('HANDLE HEIGHT CHANGE!', height);
     this.setState({ height: `${calculateRhythm(height)}px` });
   }
 
@@ -28,7 +29,7 @@ class VerticalRhythm extends Component {
     };
 
     return (
-      <ReactHeight onHeightReady={ height => this.handleVerticalRhythm(height) } style={ styles }>
+      <ReactHeight dirty={true} onHeightReady={ height => this.handleVerticalRhythm(height) } style={ styles }>
         { this.props.children }
       </ReactHeight>
     );

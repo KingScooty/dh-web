@@ -5,8 +5,8 @@ import moment from 'moment';
 import TimeAgo from 'react-timeago';
 import twitter from 'twitter-text';
 
-import PostMedia from './PostMedia';
 import VerticalRhythm from '../_shared/VerticalRhythm';
+import PostMedia from './PostMedia';
 
 if (typeof window !== 'undefined') {
   require('./sass/main.scss');
