@@ -3,6 +3,15 @@
 @import 'objects/responsive-image';
 // @import "~inuit-media/objects.media";
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+// stream post is 567px wide. Would be nice to have it native 600px for twitter
+// images at medium size.
 
 .show-grid {
   background-image: -webkit-linear-gradient(top, cyan 0, rgba(255,255,255,0) 1px);

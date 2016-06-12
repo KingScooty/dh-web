@@ -1,27 +1,17 @@
 import React from 'react';
 import classNames from 'classnames';
-import LazyLoad from 'react-lazyload';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-// import Breakjs from 'breakjs';
+import PostMediaImage from './PostMediaImage';
+import ReactHeight from 'react-height';
 
-var calculateRhythm = function calculateRhythm(height) {
-  // window.$ = document.querySelectorAll.bind(document);
-  var bodyFontSizePx = getComputedStyle(document.body).getPropertyValue('font-size');
-  var bodyLineHeightPx = getComputedStyle(document.body).getPropertyValue('line-height');
-  var bodyLineHeightRem = bodyLineHeightPx / bodyFontSizePx;
-
-  var baseline = bodyLineHeightPx / 2;
-  var remainder = height % baseline;
-  var invertRemainder = baseline - remainder;
-};
-
-// var layout = Breakjs({
-//   mobile: 0,
-//   phablet: 640,
-//   tablet: 800,
-//   desktop: 1024,
-//   wide: 1600
-// });
+// var calculateRhythm = function calculateRhythm(height) {
+//   var bodyFontSizePx = getComputedStyle(document.body).getPropertyValue('font-size');
+//   var bodyLineHeightPx = getComputedStyle(document.body).getPropertyValue('line-height');
+//   var bodyLineHeightRem = bodyLineHeightPx / bodyFontSizePx;
+//
+//   var baseline = bodyLineHeightPx / 2;
+//   var remainder = height % baseline;
+//   var invertRemainder = baseline - remainder;
+// };
 
 var PostMedia = React.createClass({
   propTypes: {
@@ -43,80 +33,15 @@ var PostMedia = React.createClass({
     href: React.PropTypes.string
   },
 
-  // getInitialState: function () {
-  //   return {layout: layout.current()};
-  // },
-  // componentDidMount: function () {
-  //   layout.addChangeListener(this.onLayoutChange);
-  // },
-  // componentWillUnmount: function () {
-  //   layout.removeChangeListener(this.onLayoutChange);
-  // },
-  // onLayoutChange: function (layout) {
-  //   this.setState({layout: layout});
-  // },
-
-  // There are way more ratios than these.
-  // 1by1, and some weird android sizes.
-  getImgRatio: function (media) {
-    var width;
-    var height;
-
-    if (media.sizes && media.sizes.large) {
-      width = media.sizes.large.w;
-      height = media.sizes.large.h;
-
-      return 100 / (width / height);
-    }
-  },
-
-  lazyLoadWrapper: function (img) {
-    return (
-      <LazyLoad offset={ 500 }>
-        <ReactCSSTransitionGroup
-          transitionName="fade"
-          transitionAppear
-          transitionAppearTimeout={ 300 }
-          transitionEnter={ false }
-          transitionLeave={ false }
-          >
-          { img }
-        </ReactCSSTransitionGroup>
-      </LazyLoad>
-    );
-  },
-
-  // These should be separate react component classes in the same file.
-  responsiveImgWrapper: function (media) {
-    var classes = classNames(
-      'gs-o-responsive-image'
-    );
-    var styles = {
-      paddingBottom: `${this.getImgRatio(media)}%`
-    };
-
-    var img = <img src={ media.media_url } />;
-
-    return (
-      <div style={ styles } className={ classes }>
-        { this.lazyLoadWrapper(img) }
-      </div>
-    );
-  },
+  // <ReactHeight onHeightReady={ height => console.log(height) } key={ index }>
+  // </ReactHeight>
 
   imgElement: function (media) {
     return media.map((media, index) => {
-      var img;
-      if (media.sizes) {
-        img = this.responsiveImgWrapper(media);
-      }
-      else {
-        img = <img src={ media.media_url } />;
-      }
       return (
         <div className="stream-post__media-item" key={ index }>
           <a href={ this.props.href }>
-            { img }
+            <PostMediaImage {...media } />
           </a>
         </div>
       );
