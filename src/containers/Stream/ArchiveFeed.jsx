@@ -5,8 +5,8 @@ import Post from '../../components/Post';
 class ArchiveFeed extends React.Component {
   renderPosts() {
     return this.props.posts.map(function (post, index) {
-      return <Post {...post} key={ index } />;
-    });
+      return <Post {...post} key={ index } isFetching={ this.props.isFetching } />;
+    }.bind(this));
   }
 
   render() {
@@ -29,11 +29,13 @@ var mapStateToProps = function (state) {
   // return { posts: state.get('posts').toJS() };
   return {
     selectedEvent: state.events.selectedEvent,
-    posts: state.events.posts
+    isFetching: state.events.isFetching,
+    posts: [state.events.posts[0]]
   };
 };
 
 ArchiveFeed.propTypes = {
+  isFetching: React.PropTypes.bool,
   posts: React.PropTypes.array.isRequired
 };
 

@@ -23,15 +23,49 @@ class VerticalRhythm extends Component {
     this.setState({ height: `${calculateRhythm(height)}px` });
   }
 
+  setWrapperRef(el) {
+    console.log(el);
+    this.wrapper = el;
+  }
+
+  componentDidMount() {
+    const height = this.wrapper.clientHeight;
+    this.handleVerticalRhythm(height);
+  }
+
+  // componentDidUpdate() {
+  //   const height = this.wrapper.clientHeight;;
+  //
+  //   if (height !== this.state.height) {
+  //     this.setState({height}, () => {
+  //       this.props.onHeightReady(this.state.height);
+  //     });
+  //   }
+  // }
+
+  componentWillReceiveProps(nextProps) {
+    const height = this.wrapper.clientHeight;
+    if (nextProps.isFetching === false && this.props.isFetching === true) {
+      this.handleVerticalRhythm(height);
+    }
+  }
+
+  // componentDidMount() {
+  //   console.log('forcing re-render');
+  //   this.forceUpdate();
+  // }
+
   render() {
     const styles = {
       height: this.state.height
     };
 
+    // <ReactHeight onHeightReady={ height => this.handleVerticalRhythm(height) } style={ styles }>
+
     return (
-      <ReactHeight dirty={true} onHeightReady={ height => this.handleVerticalRhythm(height) } style={ styles }>
+      <div ref={ this.setWrappedRef } style={ styles }>
         { this.props.children }
-      </ReactHeight>
+      </div>
     );
   }
 }
@@ -39,6 +73,10 @@ class VerticalRhythm extends Component {
 VerticalRhythm.propTypes = {
   children: PropTypes.node.isRequired
 };
+
+// VerticalRhythm.contextTypes = {
+//   router: React.PropTypes.func.isRequired
+// };
 
 // VerticalRhythm.defaultProps = {
 //   height: 'auto'
