@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import ReactHeight from 'react-height';
 
 var calculateRhythm = function calculateRhythm(height) {
@@ -23,63 +24,38 @@ class VerticalRhythm extends Component {
     this.setState({ height: `${calculateRhythm(height)}px` });
   }
 
-  setWrapperRef(el) {
-    console.log(el);
-    this.wrapper = el;
-  }
-
-  componentDidMount() {
-    const height = this.wrapper.clientHeight;
-    this.handleVerticalRhythm(height);
-  }
-
-  // componentDidUpdate() {
-  //   const height = this.wrapper.clientHeight;;
-  //
-  //   if (height !== this.state.height) {
-  //     this.setState({height}, () => {
-  //       this.props.onHeightReady(this.state.height);
-  //     });
-  //   }
-  // }
-
   componentWillReceiveProps(nextProps) {
-    const height = this.wrapper.clientHeight;
-    if (nextProps.isFetching === false && this.props.isFetching === true) {
-      this.handleVerticalRhythm(height);
+    if (nextProps.isFetching === true && this.props.isFetching === false) {
+      this.setState({height: 'auto'});
     }
   }
-
-  // componentDidMount() {
-  //   console.log('forcing re-render');
-  //   this.forceUpdate();
-  // }
 
   render() {
     const styles = {
       height: this.state.height
     };
 
-    // <ReactHeight onHeightReady={ height => this.handleVerticalRhythm(height) } style={ styles }>
-
     return (
-      <div ref={ this.setWrappedRef } style={ styles }>
+      <ReactHeight onHeightReady={ height => this.handleVerticalRhythm(height) } style={ styles }>
         { this.props.children }
-      </div>
+      </ReactHeight>
     );
   }
 }
 
 VerticalRhythm.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired
 };
 
-// VerticalRhythm.contextTypes = {
-//   router: React.PropTypes.func.isRequired
-// };
+var mapStateToProps = function (state) {
+  return {
+    isFetching: state.events.isFetching
+  };
+};
 
-// VerticalRhythm.defaultProps = {
-//   height: 'auto'
-// };
+VerticalRhythm.defaultProps = {
+  isFetching: true
+};
 
-export default VerticalRhythm;
+export default connect(mapStateToProps)(VerticalRhythm);

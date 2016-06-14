@@ -97,7 +97,7 @@ const Post = React.createClass({
 
             </div>
 
-            <VerticalRhythm isFetching={ this.props.isFetching }>
+            <VerticalRhythm>
               <div className="Media-body">
                 <p className="stream-post__screen-name">
                   <a href={ screenName.url }>@{ screenName.text }</a>
