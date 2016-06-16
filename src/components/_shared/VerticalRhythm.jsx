@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import ReactHeight from 'react-height';
 
 var calculateRhythm = function calculateRhythm(height) {
@@ -22,7 +21,6 @@ class VerticalRhythm extends Component {
   }
 
   handleVerticalRhythm(height) {
-    // console.log('HANDLE HEIGHT CHANGE!', height);
     this.setState({
       height: `${calculateRhythm(height)}px`
     });
@@ -44,18 +42,7 @@ class VerticalRhythm extends Component {
 }
 
 VerticalRhythm.propTypes = {
-  isFetching: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired
 };
 
-var mapStateToProps = function (state) {
-  return {
-    isFetching: state.events.isFetching
-  };
-};
-
-VerticalRhythm.defaultProps = {
-  isFetching: true
-};
-
-export default connect(mapStateToProps)(VerticalRhythm);
+export default VerticalRhythm;
