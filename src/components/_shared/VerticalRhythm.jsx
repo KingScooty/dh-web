@@ -15,12 +15,15 @@ var calculateRhythm = function calculateRhythm(height) {
 class VerticalRhythm extends Component {
   constructor() {
     super();
-    this.state = { height: 'auto' };
+    this.state = {
+      height: 'auto'
+    };
   }
 
   handleVerticalRhythm(height) {
-    console.log('HANDLE HEIGHT CHANGE!', height);
-    this.setState({ height: `${calculateRhythm(height)}px` });
+    this.setState({
+      height: `${calculateRhythm(height)}px`
+    });
   }
 
   render() {
@@ -29,9 +32,11 @@ class VerticalRhythm extends Component {
     };
 
     return (
-      <ReactHeight dirty={true} onHeightReady={ height => this.handleVerticalRhythm(height) } style={ styles }>
-        { this.props.children }
-      </ReactHeight>
+      <div style={ styles }>
+        <ReactHeight onHeightReady={ height => this.handleVerticalRhythm(height) }>
+          { this.props.children }
+        </ReactHeight>
+      </div>
     );
   }
 }
@@ -39,9 +44,5 @@ class VerticalRhythm extends Component {
 VerticalRhythm.propTypes = {
   children: PropTypes.node.isRequired
 };
-
-// VerticalRhythm.defaultProps = {
-//   height: 'auto'
-// };
 
 export default VerticalRhythm;

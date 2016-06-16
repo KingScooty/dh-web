@@ -14,6 +14,7 @@ if (typeof window !== 'undefined') {
 
 const Post = React.createClass({
   propTypes: {
+    isFetching: React.PropTypes.bool,
     screen_name: React.PropTypes.string,
     user: React.PropTypes.shape({
       screen_name: React.PropTypes.string
