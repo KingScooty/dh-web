@@ -1,4 +1,7 @@
 import React from 'react';
+import classNames from 'classnames';
+import PostMediaImage from './PostMediaImage';
+// import ReactHeight from 'react-height';
 
 var PostMedia = React.createClass({
   propTypes: {
@@ -20,12 +23,15 @@ var PostMedia = React.createClass({
     href: React.PropTypes.string
   },
 
+  // <ReactHeight onHeightReady={ height => console.log(height) } key={ index }>
+  // </ReactHeight>
+
   imgElement: function (media) {
     return media.map((media, index) => {
       return (
         <div className="stream-post__media-item" key={ index }>
           <a href={ this.props.href }>
-            <img src={ media.media_url } />
+            <PostMediaImage {...media } />
           </a>
         </div>
       );

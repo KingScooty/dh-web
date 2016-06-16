@@ -5,6 +5,7 @@ import moment from 'moment';
 import TimeAgo from 'react-timeago';
 import twitter from 'twitter-text';
 
+import VerticalRhythm from '../_shared/VerticalRhythm';
 import PostMedia from './PostMedia';
 
 if (typeof window !== 'undefined') {
@@ -13,6 +14,7 @@ if (typeof window !== 'undefined') {
 
 const Post = React.createClass({
   propTypes: {
+    isFetching: React.PropTypes.bool,
     screen_name: React.PropTypes.string,
     user: React.PropTypes.shape({
       screen_name: React.PropTypes.string
@@ -84,27 +86,44 @@ const Post = React.createClass({
     return (
       <div className="stream-post">
 
-        <div className="stream-post__aside">
-          <a href={ statusUrl } target="_blank">
-            <TimeAgo className="stream-post__timeago" date={ timestamp } />
-          </a>
-        </div>
+        <div className="stream-post__container">
 
-        <div className="stream-post__profile-image">
-          <img src={ profileImage } />
-        </div>
+          <div className="Media">
+            <div className="Media-figure">
 
-        <div className="stream-post__screen-name">
-          <a href={ screenName.url }>@{ screenName.text }</a>
-        </div>
+              <div className="stream-post__profile-image">
+                <img src={ profileImage } />
+              </div>
 
-        <div {...postText} className="stream-post__text" />
+            </div>
 
-        <div className="stream-post__timestamp">
-          <a href={ statusUrl } target="_blank">{ timestampFormatted }</a>
+            <VerticalRhythm>
+              <div className="Media-body">
+                <p className="stream-post__screen-name">
+                  <a href={ screenName.url }>@{ screenName.text }</a>
+                </p>
+
+                <p {...postText} className="stream-post__text zeta" />
+
+                <div className="stream-post__timestamp caption">
+                  <a href={ statusUrl } target="_blank">{ timestampFormatted }</a>
+                </div>
+
+              </div>
+            </VerticalRhythm>
+
+          </div>
+
+          <div className="stream-post__aside caption">
+            <a href={ statusUrl } target="_blank">
+              <TimeAgo className="stream-post__timeago" date={ timestamp } />
+            </a>
+          </div>
+
         </div>
 
         <PostMedia extended_entities={ this.props.extended_entities } entities={ this.props.entities } media={ this.props.media } href={ statusUrl } />
+
       </div>
     );
   }

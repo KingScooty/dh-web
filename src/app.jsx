@@ -9,12 +9,7 @@ var App = React.createClass({
   },
 
   render: function () {
-    return (
-      <div id="app" className="typeset">
-        { this.props.children }
-        { /* <Home posts={this.props.posts} /> */ }
-      </div>
-    );
+    return this.props.children;
   }
 });
 
