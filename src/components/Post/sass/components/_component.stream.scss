@@ -2,6 +2,12 @@
  * 1. Need to factor in the border width on .stream__body-wrapper
  */
 
+.stream {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .stream__body {
   padding-left: 131px;// - 5px; /*[1]*/
 }

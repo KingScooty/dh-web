@@ -1,5 +1,30 @@
-// This might need to be moved to a new location.
+// @import '../../../../bower_components/bbc-grandstand/grandstand';
+@import '../../../bower_components/sassline/assets/sass/sassline-base';
+// @import "~inuit-media/objects.media";
 
-body {
-  background-color: red;
+html {
+  box-sizing: border-box;
 }
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+@import 'objects/media-object';
+@import 'objects/responsive-image';
+
+// body {
+//   background-color: #00223e;
+//   color: white;
+// }
+
+// stream post is 567px wide. Would be nice to have it native 600px for twitter
+// images at medium size.
+
+// .show-grid {
+//   background-image: -webkit-linear-gradient(top, white 0, rgba(255,255,255,0) 1px);
+//   background-image: -moz-linear-gradient(top, white 0, rgba(255,255,255,0) 1px);
+//   background-image: -o-linear-gradient(top, white 0, rgba(255,255,255,0) 1px);
+//   background-image: linear-gradient(to bottom, white 0, rgba(255,255,255,0) 1px);
+//   background-repeat: repeat-y;
+//   background-size: 100% 1rem;
+// }
