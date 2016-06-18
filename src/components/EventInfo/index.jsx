@@ -1,6 +1,10 @@
 import React from 'react';
 import marked from 'marked';
 
+if (typeof window !== 'undefined') {
+  require('./sass/main.scss');
+}
+
 var EventInfo = React.createClass({
   propTypes: {
     titleLead: React.PropTypes.string,
@@ -32,10 +36,12 @@ var EventInfo = React.createClass({
 
         <div className="event__header">
           <h1 className="lead-title">{ titleLead }</h1>
-          <h2 className="support-title">{ titleSupport }</h2>
+          <hr className="section-spacer section-spacer--compact" />
+          <h2 className="support-title" dangerouslySetInnerHTML={{__html: titleSupport }} />
+          <hr className="section-spacer section-spacer--compact" />
         </div>
 
-        <hr className="section-spacer" />
+        {/*<hr className="section-spacer section-spacer--compact" />*/}
 
         <div className="event__body" {...getEventBody} />
 

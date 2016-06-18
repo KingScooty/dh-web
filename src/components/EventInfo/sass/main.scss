@@ -1,0 +1,42 @@
+@import '../../../static/sass/settings/settings.breakpoints';
+@import '../../../static/sass/settings/settings.sassline';
+// @import "~sass-mq/mq";
+
+@import '../../../static/sass/vendor/sassline/sassline-base';
+
+
+.lead-title {
+  // font-family: 'myriad-pro-condensed',sans-serif !important;
+  // font-size: 70px;
+  @include sassline($fontsize: doublepica, $font: $headingtype, $lineheight: 4, $below: 1, $breakpoint: all);
+  // margin: 0;
+  // line-height: 1;
+  text-align: center;
+  // border-bottom: 1px solid rgba(50,50,50,.5);
+  // padding-bottom: 5px;
+  text-shadow: 2px 2px 1px rgba(0,0,0,.3);
+}
+
+.section-spacer--compact {
+  padding: 1rem 0;
+  margin: -1rem 0;
+  background-image: linear-gradient(to bottom,rgba(50,50,50,.5) 50%, hsla(0,0%,100%,.1) 50%);
+  background-size: 100% 2px;
+}
+
+.support-title {
+  font-family: unquote(map-get($altheadingtype, font-family));
+  font-weight: map-get($altheadingtype, bold);
+  @include sassline($fontsize: delta, $font: $altheadingtype, $lineheight: 2, $below: 1, $breakpoint: all);
+  text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  // font-family: 'proxima-nova, sans-serif';
+  // padding-top: 5px;
+  // margin: 0;
+  text-align: center;
+  // border-top: 1px solid hsla(0,0%,100%,.1);
+}
+
+
+.event__header {
+  margin-bottom: 1rem;
+}
