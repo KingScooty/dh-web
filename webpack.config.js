@@ -49,9 +49,15 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         context: `${__dirname}/src/`,
-        // flatten: true,
+        flatten: true,
         from: '**/*.png',
         to: path.join(__dirname, '.temp/static/images/')
+      },
+      {
+        context: `${__dirname}/src/`,
+        flatten: true,
+        from: '**/*.svg',
+        to: path.join(__dirname, '.temp/static/svg/')
       }
     ]),
     new ExtractTextPlugin('css/main.css', {allChunks: false}),
