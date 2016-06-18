@@ -9,7 +9,10 @@
 // }
 
 .stream__body {
-  padding-left: 131px;// - 5px; /*[1]*/
+  padding-left: 28px;
+  @include mq($from: m) {
+    padding-left: 131px;// - 5px; /*[1]*/
+  }
 }
 
 .stream__body-wrapper {
@@ -18,18 +21,29 @@
 
 .stream-post {
   position: relative;
-  margin-left: -136px;
+  margin-left: -32px;
+
+  @include mq($from: m) {
+    margin-left: -136px;
+  }
 }
 
 .stream-post__container {
-  padding-left: 106px;
+  @include mq($from: m) {
+    padding-left: 106px;
+  }
 }
 
 .stream-post__aside {
-  width: 90px;
-  position: absolute;
-  left: 0;
-  top: 0;
+  display: none;
+
+  @include mq($from: m) {
+    display: block;
+    width: 90px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 
 .u-crop-rounded {
