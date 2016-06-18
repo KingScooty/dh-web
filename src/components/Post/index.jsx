@@ -1,12 +1,16 @@
 'use strict';
 
 import React from 'react';
-import moment from 'moment';
+// import moment from 'moment';
+import moment from 'moment-timezone/moment-timezone';
 import TimeAgo from 'react-timeago';
 import twitter from 'twitter-text';
 
 import VerticalRhythm from '../_shared/VerticalRhythm';
 import PostMedia from './PostMedia';
+
+moment.tz.add('Europe/London|GMT BST|0 -10|01010101010101010101010|1BWp0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00|10e6');
+moment.tz.link('Europe/London');
 
 if (typeof window !== 'undefined') {
   require('./sass/main.scss');
@@ -34,7 +38,7 @@ const Post = React.createClass({
   },
 
   formatTimeStamp: function (timestamp) {
-    return moment(timestamp, 'ddd MMM DD HH:mm:SS ZZ YYYY').format('HH:mm a, Do MMM');
+    return moment(timestamp, 'ddd MMM DD HH:mm:SS ZZ YYYY').tz('Europe/London').format('HH:mm a, Do MMM');
   },
 
   getScreenName: function (post) {

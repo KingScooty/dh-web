@@ -34,6 +34,7 @@ export function receiveEvent(event, json) {
 }
 
 // @TODO: Needs error checking tests
+// @TODO: Still doesn't work on iOS Safari
 
 export function fetchEvent(event) {
   return dispatch => {
