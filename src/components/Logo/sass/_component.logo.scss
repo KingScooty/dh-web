@@ -9,13 +9,14 @@
   position: relative;
   width: (730px / 2);
   // height: 536px;
-  height: (38rem / 2);
+  // height: (38rem / 2);
+  height: 22rem;
   margin: 3rem auto 0;
   z-index: 10;
 
   @include mq($from: l) {
     width: 730px;
-    height: 38rem;
+    height: 32rem;
   }
 }
 
