@@ -46,9 +46,11 @@ var EventInfo = React.createClass({
         <div className="event__body" {...getEventBody} />
 
         <div className="event__footer">
-          <hr />
-          <h2 className="island-title">{ footer }</h2>
-          <hr />
+          <hr className="section-spacer" />
+          <div>
+          <div className="island-title">{ footer }</div>
+          </div>
+          <hr className="section-spacer" />
         </div>
       </div>
     );
