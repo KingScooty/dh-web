@@ -50,6 +50,12 @@ module.exports = {
         flatten: true,
         from: path.join(__dirname, 'src/**/images/**/*'),
         to: path.join(__dirname, '.temp/static/images/')
+      },
+      {
+        context: `${__dirname}/src/`,
+        flatten: true,
+        from: '**/*.svg',
+        to: path.join(__dirname, '.temp/static/svg/')
       }
     ]),
     new ExtractTextPlugin('css/main.css', {allChunks: false}),
