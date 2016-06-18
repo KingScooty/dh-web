@@ -3,14 +3,20 @@
   opacity: 1;
   // visibility: hidden;
   overflow: hidden;
-  width: 506px;
-  height: 350px;
+  width: (506px / 2);
+  height: (350px / 2);
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
-  background-size: 506px 350px;
+  background-size: (506px / 2) (350px / 2);
   background-position: top center;
+
+  @include mq($from: l) {
+    width: 506px;
+    height: 350px;
+    background-size: 506px 350px;
+  }
 
   transform-origin: bottom left;
   transform: scaleX(0) rotate(-60deg);
