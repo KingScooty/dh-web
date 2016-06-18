@@ -33,8 +33,10 @@ var Home = React.createClass({
     return (
       <div>
         <Logo {...logoProps} />
-        <EventInfo {...eventInfoProps} />
-        { Stream }
+        <div style={ {maxWidth: '600px', margin: '0 auto'} }>
+          <EventInfo {...eventInfoProps} />
+          { Stream }
+        </div>
       </div>
     );
   }
