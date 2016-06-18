@@ -33,8 +33,10 @@ export function receiveEvent(event, json) {
   };
 }
 
+// @TODO: Needs error checking tests
+
 export function fetchEvent(event) {
-  return async dispatch => {
+  return dispatch => {
     dispatch(requestEvent(event));
     var host;
     const VIRTUAL_HOST = process.env.VIRTUAL_HOST;
@@ -48,37 +50,23 @@ export function fetchEvent(event) {
     else {
       host = '';
     }
-    // const host = VIRTUAL_HOST ? `http://${VIRTUAL_HOST}` : 'http://127.0.0.1:1337';
 
-    // console.log('EVENT ACTION:', event);
-
-    const eventInfo = await fetch(`${host}/api/events/${event}/info`)
-      .then((response) => {
-        // console.log(response.status);
-        // console.log(response);
-        if (response.status >= 400) {
-          throw new Error('Bad response from server');
-        }
-        return response.json();
-      });
-
-    const eventPosts = await fetch(`${host}/api/events/${event}/tweets`)
-      .then((response) => {
-        // console.log(response.status);
-        // console.log(response);
-        if (response.status >= 400) {
-          throw new Error('Bad response from server');
-        }
-        return response.json();
-      });
-
-    const eventObject = {
-      eventInfo: eventInfo.body,
-      eventPosts: eventPosts.body
-    };
-
-    console.log('ACTION FINISHED');
-    return dispatch(receiveEvent(event, eventObject));
+    return fetch(`${host}/api/events/${event}`)
+    .then(response => {
+      if (response.status >= 400) {
+        throw new Error('Bad response from server');
+      }
+      return response.json();
+    })
+    .then(function (response) {
+      return {
+        eventInfo: response.body.info[0],
+        eventPosts: response.body.tweet
+      };
+    })
+    .then(function (eventObject) {
+      dispatch(receiveEvent(event, eventObject));
+    });
   };
 }
 

@@ -19,28 +19,27 @@ describe('Async actions', () => {
 
   it('creates RECEIVE_EVENT when fetching events has been done', () => {
 
-    const infoPayload = {
-      body: [
-        {
-          type: 'info',
-          html: '<div>Event Info</div>'
-        }
-      ]
+    const payload = {
+      body: {
+        info: [
+          {
+            type: 'info',
+            html: '<div>Event Info</div>'
+          }
+        ],
+        tweet: [
+          {
+            text: 'some tweet text',
+            type: 'tweet'
+          }
+        ]
+      }
     };
 
-    const postsPayload = {
-      body: [
-        {
-          text: 'some tweet text',
-          type: 'tweet'
-        }
-      ]
-    };
-
-    const expectedInfoResponse = [{
+    const expectedInfoResponse = {
       type: 'info',
       html: '<div>Event Info</div>'
-    }];
+    };
 
     const expectedPostsResponse = [
       {
@@ -50,12 +49,8 @@ describe('Async actions', () => {
     ];
 
     nock('http://127.0.0.1:1337')
-      .get('/api/events/2015/info')
-      .reply(200, infoPayload);
-
-    nock('http://127.0.0.1:1337')
-      .get('/api/events/2015/tweets')
-      .reply(200, postsPayload);
+      .get('/api/events/2015')
+      .reply(200, payload);
 
     // Perhaps going forward this should test spies to see if the right actions
     // are being called? As the individual actions will already be tested.

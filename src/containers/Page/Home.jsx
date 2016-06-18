@@ -43,7 +43,7 @@ var Home = React.createClass({
 });
 
 var mapStateToProps = function (state) {
-  const eventInfo = state.events.eventInfo[0];
+  const eventInfo = state.events.eventInfo;
   return {
     titleLead: eventInfo.titleLead,
     titleSupport: eventInfo.titleSupport,
