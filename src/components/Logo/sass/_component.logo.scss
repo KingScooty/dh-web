@@ -1,0 +1,114 @@
+// .masthead {
+//   height: 475px;
+//   padding-top: 50px;
+//   margin-bottom: 3rem;
+// }
+
+.logo {
+  perspective: 1000;
+  position: relative;
+  width: (730px / 2);
+  // height: 536px;
+  height: (38rem / 2);
+  margin: 3rem auto 0;
+  z-index: 10;
+
+  @include mq($from: l) {
+    width: 730px;
+    height: 38rem;
+  }
+}
+
+.logo__ribbon {
+  // display: none;
+  position: absolute;
+  z-index: 20;
+  height: (449px / 2);
+  width: (464px / 2);
+  left: 50%;
+  margin-left: (-232px / 2);
+  background-image: url(/images/logo__ribbon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include mq($from: l) {
+    height: 449px;
+    width: 464px;
+    margin-left: -232px;
+  }
+}
+
+.logo__ribbon__text {
+  position: absolute;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.logo--halloween-15 {
+  .logo__ribbon__text {
+    background-image: url(/images/logo__ribbon__text--halloween-15.png);
+
+  }
+}
+
+.logo--dh-2015 {
+  .logo__ribbon__text {
+    background-image: url(/images/logo__ribbon__text--2015.png);
+  }
+}
+
+.logo--dh-2014 {
+  .logo__ribbon__text {
+    background-image: url(/images/logo__ribbon__text--2014.png);
+  }
+}
+
+.logo--dh-2013 {
+  .logo__ribbon__text {
+    background-image: url(/images/logo__ribbon__text--2013.png);
+  }
+}
+
+.logo--dh-2012 {
+  .logo__ribbon__text {
+    background-image: url(/images/logo__ribbon__text--2012.png);
+  }
+}
+
+
+.logo__base {
+  position: relative;
+  display: block;
+  height: (449px / 2);
+  width: (464px / 2);
+  background-image: url(/images/logo--blank.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  z-index: 10;
+
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+
+  @include mq($from: l) {
+    height: 449px;
+    width: 464px;
+  }
+}
+
+// .js {
+  .logo {
+    // position: absolute;
+    // top: 50px;
+    /* top: -450px; */
+    // left: 50%;
+    // margin-left: -365px;
+    transform-style: preserve-3d;
+    transform: translate3d(0,0,0);
+  }
+// }

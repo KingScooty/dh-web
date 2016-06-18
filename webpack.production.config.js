@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -43,6 +44,20 @@ module.exports = {
   },
   plugins: [
     // new webpack.optimize.DedupePlugin(),
+    new CopyWebpackPlugin([
+      {
+        // context: path.join(__dirname, 'src'),
+        flatten: true,
+        from: path.join(__dirname, 'src/**/images/**/*'),
+        to: path.join(__dirname, '.temp/static/images/')
+      },
+      {
+        context: `${__dirname}/src/`,
+        flatten: true,
+        from: '**/*.svg',
+        to: path.join(__dirname, '.temp/static/svg/')
+      }
+    ]),
     new ExtractTextPlugin('css/main.css', {allChunks: false}),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
   ],

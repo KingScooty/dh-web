@@ -1,0 +1,31 @@
+.logo__props {
+  position: absolute;
+  width: (506px / 2);
+  height: (350px / 2);
+  margin-left: (-253px / 2);
+  left: 50%;
+  top: (100px / 2);
+  z-index:15;
+
+  @include mq($from: l) {
+    width: 506px;
+    height: 350px;
+    margin-left: -253px;
+    top: 100px;
+  }
+
+  // Default state is invisible.
+  opacity: 0;
+
+  transition: opacity .5s cubic-bezier(1.000, 0.000, 0.435, 1.100);
+  transition-delay: 1s;
+
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.preload .logo__props {
+  & * {
+    transition: none !important;
+  }
+}

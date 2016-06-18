@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var autoprefixer = require('autoprefixer');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -35,7 +37,8 @@ module.exports = {
         test: /\.scss$/,
         exclude: /(node_modules|bower_components)/,
         // loader: 'style-loader!css-loader!postcss-loader',
-        loaders: ['style', 'css', 'postcss', 'sass']
+        // loaders: ['style', 'css', 'postcss', 'sass']
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
       }
     ]
   },
@@ -43,6 +46,21 @@ module.exports = {
     return [autoprefixer];
   },
   plugins: [
+    new CopyWebpackPlugin([
+      {
+        context: `${__dirname}/src/`,
+        flatten: true,
+        from: '**/*.png',
+        to: path.join(__dirname, '.temp/static/images/')
+      },
+      {
+        context: `${__dirname}/src/`,
+        flatten: true,
+        from: '**/*.svg',
+        to: path.join(__dirname, '.temp/static/svg/')
+      }
+    ]),
+    new ExtractTextPlugin('css/main.css', {allChunks: false}),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)

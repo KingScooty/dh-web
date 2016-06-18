@@ -1,6 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 
+if (typeof window !== 'undefined') {
+  require('./sass/main.scss');
+}
+
 var Logo = React.createClass({
   propTypes: {
     title: React.PropTypes.string.isRequired,

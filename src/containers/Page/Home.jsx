@@ -33,8 +33,10 @@ var Home = React.createClass({
     return (
       <div>
         <Logo {...logoProps} />
-        <EventInfo {...eventInfoProps} />
-        { Stream }
+        <div className="container">
+          <EventInfo {...eventInfoProps} />
+          { Stream }
+        </div>
       </div>
     );
   }
