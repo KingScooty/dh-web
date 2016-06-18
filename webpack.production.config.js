@@ -59,7 +59,8 @@ module.exports = {
       }
     ]),
     new ExtractTextPlugin('css/main.css', {allChunks: false}),
-    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/])
+    // new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
   ],
   devtool: 'sourcemap'
 };
