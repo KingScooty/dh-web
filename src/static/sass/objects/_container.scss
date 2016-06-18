@@ -1,0 +1,10 @@
+.container {
+  max-width: 616px;
+  margin: 0 auto;
+  padding: 0 8px;
+
+  @include mq($from: s) {
+    padding: 0 16px;
+    max-width: 632px;
+  }
+}
