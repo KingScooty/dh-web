@@ -1,22 +1,10 @@
-$mq-responsive: true;
-
-// Name your breakpoints in a way that creates a ubiquitous language
-// across team members. It will improve communication between
-// stakeholders, designers, developers, and testers.
-$mq-breakpoints: (
-    s:  320px,
-    m:  740px,
-    l:  980px,
-    xl: 1300px,
-
-    // Tweakpoints
-    // desktopAd: 810px,
-    // mobileLandscape: 480px
-);
-
-// @import '../../../../bower_components/bbc-grandstand/grandstand';
-@import '../../../bower_components/sassline/assets/sass/sassline-base';
+@import './settings/settings.breakpoints';
+@import './settings/settings.sassline';
 @import "~sass-mq/mq";
+
+// @import "~normalize.css/normalize";
+
+@import './vendor/sassline/sassline-base';
 
 html {
   box-sizing: border-box;
