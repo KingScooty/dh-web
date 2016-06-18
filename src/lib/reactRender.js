@@ -103,6 +103,8 @@ const renderBody = (context, renderProps) => {
           <meta charset="utf-8" />
           <title>{head.title}</title>
           <link rel="stylesheet" href="/css/main.css">
+          <script type="text/javascript" src="//use.typekit.net/zsn1cix.js"></script>
+          <script>try{Typekit.load({active:function(){var e=document.querySelector(".event");window.dh_el_event_current_height=e.clientHeight}})}catch(e){}</script>
       </head>
       <body class="show-grid">
           <div id="app">${body}</div>
