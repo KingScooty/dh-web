@@ -1,6 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 
+if (typeof window !== 'undefined') {
+  require('./sass/main.scss');
+}
+
 var LiveIndicator = React.createClass({
   propTypes: {
     isLive: React.PropTypes.bool.isRequired
