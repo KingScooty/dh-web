@@ -101,8 +101,8 @@ const Post = React.createClass({
 
             </div>
 
-            <VerticalRhythm>
-              <div className="Media-body">
+            <div className="Media-body">
+              <VerticalRhythm>
                 <p className="stream-post__screen-name">
                   <a href={ screenName.url }>@{ screenName.text }</a>
                 </p>
@@ -112,9 +112,8 @@ const Post = React.createClass({
                 <div className="stream-post__timestamp caption">
                   <a href={ statusUrl } target="_blank">{ timestampFormatted }</a>
                 </div>
-
-              </div>
-            </VerticalRhythm>
+                </VerticalRhythm>
+            </div>
 
           </div>
 

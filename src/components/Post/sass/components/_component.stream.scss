@@ -29,6 +29,8 @@
 }
 
 .stream-post__container {
+  margin-bottom: 2rem;
+  
   @include mq($from: m) {
     padding-left: 106px;
   }
