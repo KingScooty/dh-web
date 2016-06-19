@@ -1,0 +1,44 @@
+.HUD {
+  transform: translate3d(0,0,0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  // height: 5rem;
+  padding: 1rem 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 10;
+  color: white;
+  a {
+    color: white;
+    text-shadow: none;
+    background: none;
+    &:hover, &:active, &:focus {
+      border: 0;
+      background: none;
+    }
+  }
+}
+
+.live-indicator {
+  position: absolute;
+}
+
+.stream-navigation  {
+  margin-left: 180px;
+}
+
+.stream-navigation__item {
+  a {
+    display: block;
+    padding: 5px 10px;
+    transition: all .3s ease-in-out;
+    border-radius: 10px;
+
+    &.active, &:focus {
+      background-color: white;
+      color: #00223E;
+    }
+  }
+
+}
