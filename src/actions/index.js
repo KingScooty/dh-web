@@ -25,11 +25,11 @@ export function requestEvent(event) {
   };
 }
 
-export function receiveEvent(event, json) {
+export function receiveEvent(event, eventInfo) {
   return {
     type: RECEIVE_EVENT,
     event,
-    eventInfo: json.eventInfo//,
+    eventInfo: eventInfo//,
     // fetchedPostCount: json.eventPosts.length,
     // posts: json.eventPosts.map(post => post.value)
     // posts: json.eventPosts
@@ -43,12 +43,14 @@ export function requestPosts(event) {
   };
 }
 
-export function receivePosts(event, json) {
+export function receivePosts(event, posts) {
   return {
     type: RECEIVE_POSTS,
     event,
-    fetchedPostCount: json.eventPosts.length,
-    posts: json.eventPosts
+    // fetchedPostCount: json.eventPosts.length,
+    // posts: json.eventPosts
+    fetchedPostCount: posts.length,
+    posts: posts
   };
 }
 
@@ -86,16 +88,14 @@ export function fetchEvent(event) {
       return response.json();
     })
     .then(function (response) {
-      return {
-        // eventInfo: response.body.info[0],
-        // eventPosts: response.body.tweet
-        eventInfo: response.body[0]
-      };
-    })
-    .then(function (eventObject) {
-      console.log('DOES THIS EVENT DISPATCH?????');
-      dispatch(receiveEvent(event, eventObject));
+      // return {
+      //   eventInfo: response.body[0]
+      // };
+      dispatch(receiveEvent(event, response.body[0]));
     });
+    // .then(function (eventObject) {
+    //   dispatch(receiveEvent(event, eventObject));
+    // });
   };
 }
 
@@ -107,34 +107,60 @@ export function clearPosts() {
   };
 }
 
+function fetchFromAPI(endPoint, dispatch) {
+  return fetch(endPoint)
+  .then(response => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then(response => {
+    dispatch(receivePosts(event, response.body));
+  });
+}
+
+var createDelayManager = function() {
+  var timer = 0;
+  return function(callback, ms) {
+     clearTimeout(timer);
+     timer = setTimeout(callback, ms);
+  };
+};
+
 // @TODO: Needs error checking tests
 // @TODO: Still doesn't work on iOS Safari
-var timeout;
+// var timeout;
 
 export function fetchPosts(event) {
   return dispatch => {
     dispatch(requestPosts(event));
-    var host = getHost();
+    const host = getHost();
 
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      return fetch(`${host}/api/events/${event}/tweets`)
-      .then(response => {
-        if (response.status >= 400) {
-          throw new Error('Bad response from server');
-        }
-        return response.json();
-      })
-      .then(function (response) {
-        return {
-          eventPosts: response.body
-        };
-      })
-      .then(function (eventObject) {
-        console.log('DOES THIS EVENT DISPATCH?????');
-        dispatch(receivePosts(event, eventObject));
-      });
-    }, 300);
+    const endPoint = `${host}/api/events/${event}/tweets`;
+    const delayManagerPosts = createDelayManager();
+
+    delayManager(fetchFromAPI.bind(null, endPoint), 300);
+
+    // clearTimeout(timeout);
+    // timeout = setTimeout(() => {
+    //   return fetch(`${host}/api/events/${event}/tweets`)
+    //   .then(response => {
+    //     if (response.status >= 400) {
+    //       throw new Error('Bad response from server');
+    //     }
+    //     return response.json();
+    //   })
+    //   .then(function (response) {
+    //     return {
+    //       eventPosts: response.body
+    //     };
+    //   })
+    //   .then(function (eventObject) {
+    //     dispatch(receivePosts(event, eventObject));
+    //   });
+      // fetchFromAPI(`${host}/api/events/${event}/tweets`);
+    // }, 300);
 
   };
 }
