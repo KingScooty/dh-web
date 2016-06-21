@@ -30,58 +30,10 @@ const getHost = function getHost() {
   return host;
 };
 
-// const fetchPosts = function fetchPosts(event) {
-//   var host = getHost();
-//   return fetch(`${host}/api/events/${event}/tweets`)
-//   .then(response => {
-//     if (response.status >= 400) {
-//       throw new Error('Bad response from server');
-//     }
-//     return response.json();
-//   })
-//   .then(function (response) {
-//     console.log('RESPONSE:', response);
-//     return {
-//       eventPosts: response.body
-//     };
-//   });
-// };
 
 class ArchiveFeed extends React.Component {
-  // constructor() {
-    // super();
-    // this.state = { posts: [] };
-    // this.fetchPosts = this.fetchPosts.bind(this);
-  // }
-
-  // fetchPosts(event) {
-  //   var host = getHost();
-  //
-  //   return fetch(`${host}/api/events/${event}/tweets`)
-  //   .then(response => {
-  //     if (response.status >= 400) {
-  //       throw new Error('Bad response from server');
-  //     }
-  //     return response.json();
-  //   })
-  //   .then(response => {
-  //     console.log('RESPONSE:', response);
-  //
-  //     this.setState({
-  //       posts: response.body
-  //     });
-  //
-  //     console.log('log state after setting it');
-  //     console.log(this.state.posts);
-  //
-  //     return {
-  //       eventPosts: response.body
-  //     };
-  //   });
-  // }
 
   renderPosts() {
-    // return this.state.posts.map(function (post, index) {
     return this.props.posts.map(function (post, index) {
       return <Post {...post} key={ index } />;
     });
@@ -89,9 +41,6 @@ class ArchiveFeed extends React.Component {
 
   componentDidMount() {
     this.props.fetchPosts(this.props.selectedEvent);
-    // setTimeout(() => {
-    //   this.fetchPosts(this.props.location.pathname.slice(1));
-    // }, 300);
   }
 
   componentWillUnmount() {
