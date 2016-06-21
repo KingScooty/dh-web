@@ -44,6 +44,11 @@ module.exports = {
   },
   plugins: [
     // new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
     new CopyWebpackPlugin([
       {
         // context: path.join(__dirname, 'src'),
