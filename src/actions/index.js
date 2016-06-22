@@ -122,9 +122,9 @@ function fetchFromAPI(endPoint, event, dispatch) {
 
 export function fetchPosts(event) {
   return dispatch => {
-    dispatch(requestPosts(event));
     const host = getHost();
     const endPoint = `${host}/api/events/${event}/tweets`;
+    dispatch(requestPosts(event));
     fetchFromAPI(endPoint, event, dispatch);
   };
 }
