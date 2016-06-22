@@ -107,7 +107,7 @@ export function clearPosts() {
   };
 }
 
-function fetchFromAPI(endPoint, dispatch) {
+function fetchFromAPI(endPoint, event, dispatch) {
   return fetch(endPoint)
   .then(response => {
     if (response.status >= 400) {
@@ -120,17 +120,15 @@ function fetchFromAPI(endPoint, dispatch) {
   });
 }
 
-var createDelayManager = function() {
+var createDelayManager = function () {
   var timer = 0;
-  return function(callback, ms) {
-     clearTimeout(timer);
-     timer = setTimeout(callback, ms);
+  return function (callback, ms) {
+    clearTimeout(timer);
+    timer = setTimeout(callback, ms);
   };
 };
 
-// @TODO: Needs error checking tests
-// @TODO: Still doesn't work on iOS Safari
-// var timeout;
+const delayManagerPosts = createDelayManager();
 
 export function fetchPosts(event) {
   return dispatch => {
@@ -138,9 +136,11 @@ export function fetchPosts(event) {
     const host = getHost();
 
     const endPoint = `${host}/api/events/${event}/tweets`;
-    const delayManagerPosts = createDelayManager();
+    // const delayManagerPosts = createDelayManager();
 
-    delayManager(fetchFromAPI.bind(null, endPoint), 300);
+    delayManagerPosts(fetchFromAPI.bind(
+      null, endPoint, event, dispatch
+    ), 400);
 
     // clearTimeout(timeout);
     // timeout = setTimeout(() => {
