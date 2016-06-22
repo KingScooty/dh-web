@@ -81,7 +81,7 @@ var mapDispatchToProps = dispatch => {
 };
 
 var mapStateToProps = state => {
-  console.log(state.events.selectedEvent);
+  // console.log(state.events.selectedEvent);
   return {
     selectedEvent: state.events.selectedEvent
   };

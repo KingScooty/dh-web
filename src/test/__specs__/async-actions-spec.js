@@ -20,20 +20,20 @@ describe('Async actions', () => {
   it('creates RECEIVE_EVENT when fetching events has been done', () => {
 
     const payload = {
-      body: {
-        info: [
-          {
+      body: [{
+        // info: [
+          // {
             type: 'info',
             html: '<div>Event Info</div>'
-          }
-        ],
-        tweet: [
-          {
-            text: 'some tweet text',
-            type: 'tweet'
-          }
-        ]
-      }
+          // }
+        // ],
+        // tweet: [
+        //   {
+        //     text: 'some tweet text',
+        //     type: 'tweet'
+        //   }
+        // ]
+      }]
     };
 
     const expectedInfoResponse = {
@@ -41,15 +41,15 @@ describe('Async actions', () => {
       html: '<div>Event Info</div>'
     };
 
-    const expectedPostsResponse = [
-      {
-        text: 'some tweet text',
-        type: 'tweet'
-      }
-    ];
+    // const expectedPostsResponse = [
+    //   {
+    //     text: 'some tweet text',
+    //     type: 'tweet'
+    //   }
+    // ];
 
     nock('http://127.0.0.1:1337')
-      .get('/api/events/2015')
+      .get('/api/events/2015/info')
       .reply(200, payload);
 
     // Perhaps going forward this should test spies to see if the right actions
@@ -63,8 +63,8 @@ describe('Async actions', () => {
         type: types.RECEIVE_EVENT,
         event: '2015',
         eventInfo: expectedInfoResponse,
-        fetchedPostCount: 1,
-        posts: expectedPostsResponse//.map(post => post)
+        // fetchedPostCount: 1,
+        // posts: expectedPostsResponse//.map(post => post)
       }
     ];
 
