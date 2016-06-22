@@ -88,16 +88,12 @@ export function fetchEvent(event) {
       return response.json();
     })
     .then(function (response) {
-      // return {
-      //   eventInfo: response.body[0]
-      // };
       dispatch(receiveEvent(event, response.body[0]));
     });
-    // .then(function (eventObject) {
-    //   dispatch(receiveEvent(event, eventObject));
-    // });
   };
 }
+
+// @TODO: NEEDS TESTS!!
 
 export function clearPosts() {
   return {
@@ -106,6 +102,8 @@ export function clearPosts() {
     posts: []
   };
 }
+
+// @TODO: NEEDS TESTS!!
 
 function fetchFromAPI(endPoint, event, dispatch) {
   return fetch(endPoint)
@@ -120,52 +118,18 @@ function fetchFromAPI(endPoint, event, dispatch) {
   });
 }
 
-var createDelayManager = function () {
-  var timer = 0;
-  return function (callback, ms) {
-    clearTimeout(timer);
-    timer = setTimeout(callback, ms);
-  };
-};
-
-const delayManagerPosts = createDelayManager();
+// @TODO: NEEDS TESTS!!
 
 export function fetchPosts(event) {
   return dispatch => {
     dispatch(requestPosts(event));
     const host = getHost();
-
     const endPoint = `${host}/api/events/${event}/tweets`;
-    // const delayManagerPosts = createDelayManager();
-
-    delayManagerPosts(fetchFromAPI.bind(
-      null, endPoint, event, dispatch
-    ), 400);
-
-    // clearTimeout(timeout);
-    // timeout = setTimeout(() => {
-    //   return fetch(`${host}/api/events/${event}/tweets`)
-    //   .then(response => {
-    //     if (response.status >= 400) {
-    //       throw new Error('Bad response from server');
-    //     }
-    //     return response.json();
-    //   })
-    //   .then(function (response) {
-    //     return {
-    //       eventPosts: response.body
-    //     };
-    //   })
-    //   .then(function (eventObject) {
-    //     dispatch(receivePosts(event, eventObject));
-    //   });
-      // fetchFromAPI(`${host}/api/events/${event}/tweets`);
-    // }, 300);
-
+    fetchFromAPI(endPoint, event, dispatch);
   };
 }
 
-export function shouldFetchEvent(state, event) {
+export function shouldFetchEvent(state) {
   if (state.isFetching) return false;
   return true;
 }
