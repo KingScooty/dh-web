@@ -17,6 +17,10 @@ const Stream = React.createClass({
     var { live, archive } = this.props;
     // var pathname = this.props.location.pathname;
 
+    // Applying a key of the route forces the component to re-render
+    // from scratch. We lose animation from this node down, so we take care of
+    // it a bit differently. Needs a react transition to fade on tear down.
+
     return (
       <div id="stream" className="stream">
         <div className="stream__header">

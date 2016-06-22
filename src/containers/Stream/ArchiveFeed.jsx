@@ -17,21 +17,11 @@ import Post from '../../components/Post';
 //   >
 // </ReactCSSTransitionGroup>
 
-const getHost = function getHost() {
-  var host;
-
-  if ((typeof window != 'undefined') && (window.location.port)) {
-    host = `http://127.0.0.1:1337`;
-  }
-  else {
-    host = '';
-  }
-
-  return host;
-};
-
-
 class ArchiveFeed extends React.Component {
+  constructor() {
+    super();
+    this.timeout = 0;
+  }
 
   renderPosts() {
     return this.props.posts.map(function (post, index) {
@@ -40,19 +30,21 @@ class ArchiveFeed extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPosts(this.props.selectedEvent);
+    var fetchPosts = this.props.fetchPosts;
+    var event = this.props.selectedEvent;
+    console.log('Mounting pre-timeout:', this.timeout);
+    this.timeout = setTimeout(fetchPosts.bind(null, event), 500);
   }
 
   componentWillUnmount() {
+    clearTimeout(this.timeout);
+    this.timeout = 0;
     this.props.clearPosts();
   }
 
   render() {
     var posts = this.renderPosts();
 
-    // Applying a key of the route forces the component to re-render
-    // from scratch. We lose animation from this node down, so we take care of
-    // it a bit differently. Needs a react transition to fade on tear down.
     return (
       <div>
         { posts }
@@ -62,7 +54,7 @@ class ArchiveFeed extends React.Component {
 }
 
 var mapStateToProps = function (state) {
-  console.log('ARCHIVE FEED');
+  // console.log('ARCHIVE FEED');
   return {
     selectedEvent: state.events.selectedEvent,
     posts: state.events.posts
@@ -81,6 +73,8 @@ var mapDispatchToProps = dispatch => {
 };
 
 ArchiveFeed.propTypes = {
+  fetchPosts: React.PropTypes.func.isRequired,
+  clearPosts: React.PropTypes.func.isRequired,
   selectedEvent: React.PropTypes.string.isRequired,
   posts: React.PropTypes.array.isRequired
 };

@@ -25,11 +25,11 @@ export function requestEvent(event) {
   };
 }
 
-export function receiveEvent(event, json) {
+export function receiveEvent(event, eventInfo) {
   return {
     type: RECEIVE_EVENT,
     event,
-    eventInfo: json.eventInfo//,
+    eventInfo: eventInfo//,
     // fetchedPostCount: json.eventPosts.length,
     // posts: json.eventPosts.map(post => post.value)
     // posts: json.eventPosts
@@ -43,12 +43,14 @@ export function requestPosts(event) {
   };
 }
 
-export function receivePosts(event, json) {
+export function receivePosts(event, posts) {
   return {
     type: RECEIVE_POSTS,
     event,
-    fetchedPostCount: json.eventPosts.length,
-    posts: json.eventPosts
+    // fetchedPostCount: json.eventPosts.length,
+    // posts: json.eventPosts
+    fetchedPostCount: posts.length,
+    posts: posts
   };
 }
 
@@ -86,18 +88,12 @@ export function fetchEvent(event) {
       return response.json();
     })
     .then(function (response) {
-      return {
-        // eventInfo: response.body.info[0],
-        // eventPosts: response.body.tweet
-        eventInfo: response.body[0]
-      };
-    })
-    .then(function (eventObject) {
-      console.log('DOES THIS EVENT DISPATCH?????');
-      dispatch(receiveEvent(event, eventObject));
+      dispatch(receiveEvent(event, response.body[0]));
     });
   };
 }
+
+// @TODO: NEEDS TESTS!!
 
 export function clearPosts() {
   return {
@@ -107,39 +103,33 @@ export function clearPosts() {
   };
 }
 
-// @TODO: Needs error checking tests
-// @TODO: Still doesn't work on iOS Safari
-var timeout;
+// @TODO: NEEDS TESTS!!
+
+function fetchFromAPI(endPoint, event, dispatch) {
+  return fetch(endPoint)
+  .then(response => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then(response => {
+    dispatch(receivePosts(event, response.body));
+  });
+}
+
+// @TODO: NEEDS TESTS!!
 
 export function fetchPosts(event) {
   return dispatch => {
     dispatch(requestPosts(event));
-    var host = getHost();
-
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      return fetch(`${host}/api/events/${event}/tweets`)
-      .then(response => {
-        if (response.status >= 400) {
-          throw new Error('Bad response from server');
-        }
-        return response.json();
-      })
-      .then(function (response) {
-        return {
-          eventPosts: response.body
-        };
-      })
-      .then(function (eventObject) {
-        console.log('DOES THIS EVENT DISPATCH?????');
-        dispatch(receivePosts(event, eventObject));
-      });
-    }, 300);
-
+    const host = getHost();
+    const endPoint = `${host}/api/events/${event}/tweets`;
+    fetchFromAPI(endPoint, event, dispatch);
   };
 }
 
-export function shouldFetchEvent(state, event) {
+export function shouldFetchEvent(state) {
   if (state.isFetching) return false;
   return true;
 }
