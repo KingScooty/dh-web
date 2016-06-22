@@ -27,37 +27,37 @@ describe('Actions', () => {
   it('creates an action to receive events', () => {
     const event = '2016';
     const json = {
-      eventInfo: {
+      // eventInfo: {
         type: 'info',
         html: '<div>Event Info</div>'
-      },
-      eventPosts: [
-        {
-          text: 'some tweet text',
-          type: 'tweet'
-        },
-        {
-          text: 'some more tweet text',
-          type: 'tweet'
-        }
-      ]
+      // },
+      // eventPosts: [
+      //   {
+      //     text: 'some tweet text',
+      //     type: 'tweet'
+      //   },
+      //   {
+      //     text: 'some more tweet text',
+      //     type: 'tweet'
+      //   }
+      // ]
     };
 
     const expectedAction = {
       type: types.RECEIVE_EVENT,
       event: '2016',
-      eventInfo: json.eventInfo,
-      fetchedPostCount: 2,
-      posts: [
-        {
-          text: 'some tweet text',
-          type: 'tweet'
-        },
-        {
-          text: 'some more tweet text',
-          type: 'tweet'
-        }
-      ]
+      eventInfo: json//,
+      // fetchedPostCount: 2,
+      // posts: [
+      //   {
+      //     text: 'some tweet text',
+      //     type: 'tweet'
+      //   },
+      //   {
+      //     text: 'some more tweet text',
+      //     type: 'tweet'
+      //   }
+      // ]
     };
     expect(actions.receiveEvent(event, json)).to.deep.equal(expectedAction);
   });

@@ -6,8 +6,6 @@ import { expect } from 'chai';
 import { default as reducer, initialState } from '../../reducers';
 import * as types from '../../constants/ActionTypes';
 
-// const posts = require('../../store/initialState')().posts;
-
 describe('Reducer', () => {
   it('should return the initial state', () => {
     const initialReducerState = reducer(undefined, {});
@@ -21,7 +19,6 @@ describe('Reducer', () => {
     };
 
     const nextState = reducer(initialState, action);
-    // expect(nextState.get('isLive')).to.equal(true);
     expect(nextState.isLive).to.equal(true);
   });
 
@@ -32,8 +29,7 @@ describe('Reducer', () => {
     };
 
     const nextState = reducer(initialState, action);
-    // expect(nextState.get('selectedEvent')).to.equal('2015');
-    // expect(nextState.get('isFetching')).to.equal(true);
+
     expect(nextState.selectedEvent).to.equal('2015');
     expect(nextState.isFetching).to.equal(true);
   });
@@ -44,23 +40,21 @@ describe('Reducer', () => {
       eventInfo: {
         type: 'info',
         html: '<div>Event Info</div>'
-      },
-      posts: [{
-        text: 'some tweet text',
-        type: 'tweet'
-      }]
+      }//,
+      // posts: [{
+      //   text: 'some tweet text',
+      //   type: 'tweet'
+      // }]
     };
 
     const action = {
       type: types.RECEIVE_EVENT,
       event: '2015',
-      fetchedPostCount: 1,
+      // fetchedPostCount: 1,
       eventInfo: expectedEventObject.eventInfo,
-      posts: expectedEventObject.posts
+      // posts: expectedEventObject.posts
     };
 
-    // const customInitialState = initialState.set('isFetching', true);
-    // expect(customInitialState.get('isFetching')).to.equal(true);
     const customInitialState = {
       ...initialState,
       isLive: true
@@ -68,13 +62,9 @@ describe('Reducer', () => {
 
     const nextState = reducer(customInitialState, action);
 
-    // expect(nextState.get('isFetching')).to.equal(false);
-    // expect(nextState.get('eventInfo')).to.deep.equal(Map(expectedEventObject.eventInfo));
-    // expect(nextState.get('fetchedPostCount')).to.equal(1);
-    // expect(nextState.get('posts')).to.deep.equal(fromJS(expectedEventObject.posts));
     expect(nextState.isFetching).to.equal(false);
     expect(nextState.eventInfo).to.equal(expectedEventObject.eventInfo);
-    expect(nextState.fetchedPostCount).to.equal(1);
-    expect(nextState.posts).to.equal(expectedEventObject.posts);
+    // expect(nextState.fetchedPostCount).to.equal(1);
+    // expect(nextState.posts).to.equal(expectedEventObject.posts);
   });
 });

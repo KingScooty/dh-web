@@ -2,7 +2,10 @@ import fetch from 'isomorphic-fetch';
 
 // @TODO INCLUDE ERROR HANDLING
 
-import { TOGGLE_STATUS, REQUEST_EVENT, RECEIVE_EVENT } from '../constants/ActionTypes';
+import {
+  TOGGLE_STATUS, REQUEST_EVENT, RECEIVE_EVENT,
+  REQUEST_POSTS, RECEIVE_POSTS, CLEAR_POSTS
+} from '../constants/ActionTypes';
 
 /*
  * action creators
@@ -22,15 +25,51 @@ export function requestEvent(event) {
   };
 }
 
-export function receiveEvent(event, json) {
+export function receiveEvent(event, eventInfo) {
   return {
     type: RECEIVE_EVENT,
     event,
-    eventInfo: json.eventInfo,
-    fetchedPostCount: json.eventPosts.length,
+    eventInfo: eventInfo//,
+    // fetchedPostCount: json.eventPosts.length,
     // posts: json.eventPosts.map(post => post.value)
-    posts: json.eventPosts
+    // posts: json.eventPosts
   };
+}
+
+export function requestPosts(event) {
+  return {
+    type: REQUEST_POSTS,
+    event
+  };
+}
+
+export function receivePosts(event, posts) {
+  return {
+    type: RECEIVE_POSTS,
+    event,
+    // fetchedPostCount: json.eventPosts.length,
+    // posts: json.eventPosts
+    fetchedPostCount: posts.length,
+    posts: posts
+  };
+}
+
+
+function getHost() {
+  const VIRTUAL_HOST = process.env.VIRTUAL_HOST;
+  var host;
+
+  if (VIRTUAL_HOST) {
+    host = `http://${VIRTUAL_HOST}`;
+  }
+  else if ((typeof window != 'undefined') && (window.location.port)) {
+    host = `http://127.0.0.1:1337`;
+  }
+  else {
+    host = '';
+  }
+
+  return host;
 }
 
 // @TODO: Needs error checking tests
@@ -39,20 +78,9 @@ export function receiveEvent(event, json) {
 export function fetchEvent(event) {
   return dispatch => {
     dispatch(requestEvent(event));
-    var host;
-    const VIRTUAL_HOST = process.env.VIRTUAL_HOST;
+    var host = getHost();
 
-    if (VIRTUAL_HOST) {
-      host = `http://${VIRTUAL_HOST}`;
-    }
-    else if ((typeof window != 'undefined') && (window.location.port)) {
-      host = `http://127.0.0.1:1337`;
-    }
-    else {
-      host = '';
-    }
-
-    return fetch(`${host}/api/events/${event}`)
+    return fetch(`${host}/api/events/${event}/info`)
     .then(response => {
       if (response.status >= 400) {
         throw new Error('Bad response from server');
@@ -60,18 +88,48 @@ export function fetchEvent(event) {
       return response.json();
     })
     .then(function (response) {
-      return {
-        eventInfo: response.body.info[0],
-        eventPosts: response.body.tweet
-      };
-    })
-    .then(function (eventObject) {
-      dispatch(receiveEvent(event, eventObject));
+      dispatch(receiveEvent(event, response.body[0]));
     });
   };
 }
 
-export function shouldFetchEvent(state, event) {
+// @TODO: NEEDS TESTS!!
+
+export function clearPosts() {
+  return {
+    type: CLEAR_POSTS,
+    fetchedPostCount: 0,
+    posts: []
+  };
+}
+
+// @TODO: NEEDS TESTS!!
+
+function fetchFromAPI(endPoint, event, dispatch) {
+  return fetch(endPoint)
+  .then(response => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then(response => {
+    dispatch(receivePosts(event, response.body));
+  });
+}
+
+// @TODO: NEEDS TESTS!!
+
+export function fetchPosts(event) {
+  return dispatch => {
+    const host = getHost();
+    const endPoint = `${host}/api/events/${event}/tweets`;
+    dispatch(requestPosts(event));
+    fetchFromAPI(endPoint, event, dispatch);
+  };
+}
+
+export function shouldFetchEvent(state) {
   if (state.isFetching) return false;
   return true;
 }
