@@ -98,7 +98,7 @@ const renderBody = (context, renderProps) => {
   const initialState = store.getState();
 
   const html = `<!DOCTYPE html>
-  <html class="typeset">
+  <html class="">
       <head>
           <meta charset="utf-8" />
           <title>{head.title}</title>
