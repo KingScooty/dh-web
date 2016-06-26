@@ -44,3 +44,9 @@
 .event__header {
   margin-bottom: 1rem;
 }
+
+.event__body {
+  p a {
+    background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 50%,lighten($linkColour,20%) 50%);
+  }
+}
