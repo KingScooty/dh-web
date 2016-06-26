@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var autoprefixer = require('autoprefixer');
-var dedupeCSS = require('postcss-discard-duplicates');
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -36,15 +36,15 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
+        loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'postcss-loader', 'sass-loader'])
+        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'postcss-loader', 'sass-loader')
+        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
+        // loader: ExtractTextPlugin.extract('!sass-loader!postcss-loader')
+        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader!postcss-loader')
       }
     ]
   },
-  postcss: function () {
-    return [autoprefixer, dedupeCSS];
-  },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
@@ -65,8 +65,18 @@ module.exports = {
       }
     ]),
     new ExtractTextPlugin('css/main.css', {allChunks: false}),
-    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/])
+    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
+    new webpack.optimize.DedupePlugin(),
+    new OptimizeCssAssetsPlugin({
+      // cssProcessorOptions: {
+      //   mergeRules: false,
+      //   discardDuplicates: false
+      // }
+    })
     // new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
   ],
+  postcss: function () {
+    return [autoprefixer];
+  },
   devtool: 'sourcemap'
 };
