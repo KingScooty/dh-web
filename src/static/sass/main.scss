@@ -19,19 +19,19 @@ html {
 @import 'objects/list-inline';
 // @import 'objects/grid';
 
-// body {
-//   background-color: #00223e;
-//   color: white;
-// }
+body {
+  background-color: #00223e;
+  color: white;
+}
 
 // stream post is 567px wide. Would be nice to have it native 600px for twitter
 // images at medium size.
 
 .show-grid {
-  background-image: -webkit-linear-gradient(top, cyan 0, rgba(255,255,255,0) 1px);
-  background-image: -moz-linear-gradient(top, cyan 0, rgba(255,255,255,0) 1px);
-  background-image: -o-linear-gradient(top, cyan 0, rgba(255,255,255,0) 1px);
-  background-image: linear-gradient(to bottom, cyan 0, rgba(255,255,255,0) 1px);
+  background-image: -webkit-linear-gradient(top, #002a4d 0, rgba(255,255,255,0) 1px);
+  background-image: -moz-linear-gradient(top, #002a4d 0, rgba(255,255,255,0) 1px);
+  background-image: -o-linear-gradient(top, #002a4d 0, rgba(255,255,255,0) 1px);
+  background-image: linear-gradient(to bottom, #002a4d 0, rgba(255,255,255,0) 1px);
   background-repeat: repeat-y;
   background-size: 100% 1rem;
 }
