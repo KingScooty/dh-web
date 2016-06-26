@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 
 import Navigation from '../Navigation';
 
+if (typeof window !== 'undefined') {
+  require('./sass/main.scss');
+}
+
 const Stream = React.createClass({
   propTypes: {
     live: React.PropTypes.node,
