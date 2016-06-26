@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var autoprefixer = require('autoprefixer');
+var dedupeCSS = require('postcss-discard-duplicates');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -40,7 +41,7 @@ module.exports = {
     ]
   },
   postcss: function () {
-    return [autoprefixer];
+    return [autoprefixer, dedupeCSS];
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),
