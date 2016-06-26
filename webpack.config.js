@@ -50,7 +50,7 @@ module.exports = {
       {
         context: `${__dirname}/src/`,
         flatten: true,
-        from: '**/*.png',
+        from: '**/*.{png,jpg}',
         to: path.join(__dirname, '.temp/static/images/')
       },
       {
