@@ -30,7 +30,7 @@
 
 .stream-post__container {
   margin-bottom: 2rem;
-  
+
   @include mq($from: m) {
     padding-left: 106px;
   }
@@ -61,7 +61,38 @@
   }
 }
 
+.stream-post__timestamp {
+  // font-family: unquote(map-get($headingtype, font-family));
+  // font-style: normal;
+  // font-weight: map-get($headingtype, regular);
+  @include baseline(theta, $headingtype, 2, 2, all);
+  @include fontsize(theta, all);
+  &, a, a:hover {
+    color: #3b4b5c;
+  }
+}
 
+.stream-post__aside {
+  text-align: right;
+  @include baseline(theta, $headingtype, 2, 0, all);
+  @include fontsize(theta, all);
+  &, a, a:hover {
+    color: #b4b8be;
+  }
+}
+
+.stream-post__screen-name {
+  @include baseline(theta, $headingtype, 2, 0, all);
+  @include fontsize(theta, all);
+  &, a, a:hover {
+    color: #b4b8be;
+  }
+}
+
+.stream-post__text {
+  @include baseline(theta, $headingtype, 2, 0, all);
+  @include fontsize(theta, all);
+}
 
 .stream-post__profile-image {
   border-radius: 100%;

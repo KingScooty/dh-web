@@ -7,6 +7,10 @@ $mq-breakpoints: (
 );
 
 @import "~sass-mq/mq";
+@import '../../../static/sass/settings/settings.breakpoints';
+@import '../../../static/sass/settings/settings.sassline';
+
+@import '../../../static/sass/vendor/sassline/sassline-base';
 
 
 .fade-appear {
