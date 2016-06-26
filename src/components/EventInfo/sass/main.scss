@@ -8,7 +8,7 @@
 .lead-title {
   // font-family: 'myriad-pro-condensed',sans-serif !important;
   // font-size: 70px;
-  @include sassline($fontsize: doublepica, $font: $headingtype, $lineheight: 4, $below: 1, $breakpoint: all);
+  @include sassline($fontsize: doublecanon, $font: $headingtype, $lineheight: 4, $below: 1, $breakpoint: all);
   // margin: 0;
   // line-height: 1;
   text-align: center;
@@ -31,7 +31,7 @@
 .support-title {
   font-family: unquote(map-get($altheadingtype, font-family));
   font-weight: map-get($altheadingtype, bold);
-  @include sassline($fontsize: delta, $font: $altheadingtype, $lineheight: 2, $below: 1, $breakpoint: all);
+  @include sassline($fontsize: gamma, $font: $altheadingtype, $lineheight: 2, $below: 1, $breakpoint: all);
   text-shadow: 1px 1px 1px rgba(0,0,0,.3);
   // font-family: 'proxima-nova, sans-serif';
   // padding-top: 5px;
