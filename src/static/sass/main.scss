@@ -28,6 +28,13 @@ body {
   background-repeat: no-repeat, repeat-y;
   background-position: top center, 0 0;
   background-size: auto, 100% 1rem;
+
+  @include mq($until: s) {
+    background-size: 300%, 100% 1rem;
+  }
+  @include mq($from: s, $until: m) {
+    background-size: 200%, 100% 1rem;
+  }
 }
 
 // stream post is 567px wide. Would be nice to have it native 600px for twitter
