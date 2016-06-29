@@ -11,7 +11,7 @@ import Stream from './components/Stream';
 
 export default (history, dispatch) => {
   /**
-  * Crude implementatiogut sn for now.
+  * Crude implementation for now.
   * Use `redux-async-connect` or something mentioned in this article:
 
     https://medium.com/@dbow1234/expressing-data-dependencies-in-react-43a2004e04bc#.yl4o6h19w
