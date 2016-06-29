@@ -101,7 +101,7 @@ const renderBody = (context, renderProps) => {
   <html class="">
       <head>
           <meta charset="utf-8" />
-          <title>{head.title}</title>
+          <title>Digital Heroes -- July 9th 2016</title>
           <link rel="dns-prefetch" href="//pbs.twimg.com">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
