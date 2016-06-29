@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { requestPosts, fetchPosts, clearPosts } from '../../actions';
 
 import Post from '../../components/Post';
 
@@ -29,7 +30,8 @@ class ArchiveFeed extends React.Component {
   componentDidMount() {
     var fetchPosts = this.props.fetchPosts;
     var event = this.props.selectedEvent;
-    console.log('Mounting pre-timeout:', this.timeout);
+    this.props.requestPosts();
+    // console.log('Mounting pre-timeout:', this.timeout);
     this.timeout = setTimeout(fetchPosts.bind(null, event), 500);
   }
 
@@ -59,6 +61,9 @@ var mapStateToProps = function (state) {
 
 var mapDispatchToProps = dispatch => {
   return {
+    requestPosts: () => {
+      dispatch(requestPosts());
+    },
     clearPosts: () => {
       dispatch(clearPosts());
     },
