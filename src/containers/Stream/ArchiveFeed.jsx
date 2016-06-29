@@ -1,8 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import fetch from 'isomorphic-fetch';
-import { requestPosts, fetchPosts, clearPosts } from '../../actions';
-// import classNames from 'classnames';
 
 import Post from '../../components/Post';
 
@@ -54,7 +51,6 @@ class ArchiveFeed extends React.Component {
 }
 
 var mapStateToProps = function (state) {
-  // console.log('ARCHIVE FEED');
   return {
     selectedEvent: state.events.selectedEvent,
     posts: state.events.posts
