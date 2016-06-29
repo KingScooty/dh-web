@@ -23,13 +23,13 @@ const events = (state = initialState, action) => {
       return {
         ...state,
         selectedEvent: action.event,
-        isFetching: true
+        // isFetching: true
       };
     case RECEIVE_EVENT:
       // console.log('REDUCER RECEIVED EVENT!');
       return {
         ...state,
-        isFetching: false,
+        // isFetching: false,
         eventInfo: action.eventInfo// ,
         // fetchedPostCount: action.fetchedPostCount,
         // posts: action.posts
@@ -47,7 +47,6 @@ const events = (state = initialState, action) => {
         isFetching: true // needs tweaking
       };
     case RECEIVE_POSTS:
-      // console.log('REDUCER RECEIVED POSTS');
       return {
         ...state,
         isFetching: false,
