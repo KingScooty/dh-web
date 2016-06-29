@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 if (typeof window !== 'undefined') {
@@ -6,23 +7,32 @@ if (typeof window !== 'undefined') {
 }
 
 class LoadingSpinner extends React.Component {
-  constructor() {
-    super();
-  }
-
   render() {
     var loadingSpinnerClasses = classNames(
       'loader',
       {
-        'loader--active': this.props.isVisible
+        'loader--active': this.props.isFetching
       }
     );
-    return <div className={ loadingSpinnerClasses }>Loading...</div>
+    console.log('ISVISIBLE:', this.props.isFetching);
+
+    return <div className={ loadingSpinnerClasses }>Loading...</div>;
   }
 }
 
 LoadingSpinner.propTypes = {
-  isVisible: React.PropTypes.bool
+  isFetching: React.PropTypes.bool.isRequired
 };
 
-export default LoadingSpinner;
+var mapStateToProps = state => {
+  console.log('isFETCHING: ', state.events.isFetching);
+  return {
+    isFetching: state.events.isFetching
+  };
+};
+
+export default connect(
+  mapStateToProps,
+)(LoadingSpinner);
+
+// export default LoadingSpinner;
