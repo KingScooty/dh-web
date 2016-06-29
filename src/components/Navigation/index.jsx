@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { fetchEventIfNeeded } from '../../actions';
 
 import LiveIndicator from '../../containers/LiveIndicator';
-import LoadingSpinner from '../../containers/LoadingSpinner';
+// import LoadingSpinner from '../../containers/LoadingSpinner';
+import LoadingSpinner from '../LoadingSpinner';
 
 if (typeof window !== 'undefined') {
   require('./sass/main.scss');
