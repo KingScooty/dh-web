@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * .bg2 is just slapped in here for now. Would be nice to have this handled
+ * in a more elegant way. Rather than having a script on window.load in
+ * lib/reactRender.js
+ */
+
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -32,6 +38,7 @@ var Home = React.createClass({
 
     return (
       <div>
+        <div className="bg2"></div>
         <Logo {...logoProps} />
         <div className="container">
           <EventInfo {...eventInfoProps} />

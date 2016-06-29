@@ -115,6 +115,23 @@ const renderBody = (context, renderProps) => {
           <script charSet="utf-8" id="__INITIAL_STATE__" type="application/json">${safeStringify(initialState)}</script>
 
           <script src="/client.js"></script>
+          <script>
+          window.onload = function () {
+
+            var propDelay = 0;
+            var shakeDelay = 1415;
+
+            document.querySelector('body').classList.remove('preload');
+
+            setTimeout(function() {
+              document.querySelector('.logo__props').classList.add('logo__props--engaged');
+              document.querySelector('.bg2').classList.add('active', 'shake', 'shake_y--fast');
+              document.querySelector('.logo').classList.add('shake', 'shake_x', 'shake_x--long');
+            }, 200);
+
+
+          }
+          </script>
       </body>
   </html>`;
 
