@@ -5,12 +5,17 @@ import { connect } from 'react-redux';
 import { fetchEventIfNeeded } from '../../actions';
 
 import LiveIndicator from '../../containers/LiveIndicator';
+// import LoadingSpinner from '../../containers/LoadingSpinner';
+import LoadingSpinner from '../LoadingSpinner';
 
 if (typeof window !== 'undefined') {
   require('./sass/main.scss');
 }
 
 var Navigation = React.createClass({
+  propTypes: {
+    selectedEvent: React.PropTypes.string.isRequired
+  },
 
   // handleClick: function(name) {
   //   if (window._gs) {
@@ -37,36 +42,34 @@ var Navigation = React.createClass({
   render: function () {
     return (
       <div className="HUD">
-        <div className="container">
+        {/*<div className="container">*/}
 
+          <LiveIndicator />
 
-              <LiveIndicator />
+          <LoadingSpinner />
 
+          <ul className="stream-navigation gs-o-list-inline gs-o-list-inline--spaced">
+            <li className="stream-navigation__item">
+              <Link activeClassName="active" to="/2016">2016</Link>
+            </li>
+            <li className="stream-navigation__item">
+              <Link activeClassName="active" to="/halloween15">Halloween ’15</Link>
+            </li>
+            <li className="stream-navigation__item">
+              <Link activeClassName="active" to="/2015">2015</Link>
+            </li>
+            <li className="stream-navigation__item">
+              <Link activeClassName="active" to="/2014">2014</Link>
+            </li>
+            <li className="stream-navigation__item">
+              <Link activeClassName="active" to="/2013">2013</Link>
+            </li>
+            <li className="stream-navigation__item">
+              <Link activeClassName="active" to="/2012">2012</Link>
+            </li>
+          </ul>
 
-
-              <ul className="stream-navigation gs-o-list-inline gs-o-list-inline--spaced">
-                <li className="stream-navigation__item">
-                  <Link activeClassName="active" to="/2016">2016</Link>
-                </li>
-                <li className="stream-navigation__item">
-                  <Link activeClassName="active" to="/halloween15">Halloween ’15</Link>
-                </li>
-                <li className="stream-navigation__item">
-                  <Link activeClassName="active" to="/2015">2015</Link>
-                </li>
-                <li className="stream-navigation__item">
-                  <Link activeClassName="active" to="/2014">2014</Link>
-                </li>
-                <li className="stream-navigation__item">
-                  <Link activeClassName="active" to="/2013">2013</Link>
-                </li>
-                <li className="stream-navigation__item">
-                  <Link activeClassName="active" to="/2012">2012</Link>
-                </li>
-              </ul>
-
-
-        </div>
+        {/*</div>*/}
       </div>
     );
   }
@@ -81,7 +84,6 @@ var mapDispatchToProps = dispatch => {
 };
 
 var mapStateToProps = state => {
-  // console.log(state.events.selectedEvent);
   return {
     selectedEvent: state.events.selectedEvent
   };
@@ -89,9 +91,5 @@ var mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps// ,
-  // null,
-  // {
-  //   pure: false
-  // }
+  mapDispatchToProps
 )(Navigation);
