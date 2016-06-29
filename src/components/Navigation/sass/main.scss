@@ -1,54 +1,66 @@
+$mq-breakpoints: (
+    s:  320px,
+    m:  640px,
+    l:  800px,
+    xl: 1024px,
+    xxl: 1280px
+);
+
 @import '../../../static/sass/settings/settings.breakpoints';
 @import '../../../static/sass/settings/settings.sassline';
-// @import "~sass-mq/mq";
+@import "~sass-mq/mq";
 
 @import '../../../static/sass/vendor/sassline/sassline-shared';
 
 .HUD {
   position: relative;
-  height: 5rem;
-  // line-height: 2rem;
+  height: 8rem;
   @include fontsize(theta, all);
 
-//
-//   transform: translate3d(0,0,0);
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   // height: 5rem;
-//   padding: 1rem 0;
-//   background: rgba(0,0,0,0.7);
-//   z-index: 10;
-//   color: white;
-//   a {
-//     color: white;
-//     text-shadow: none;
-//     background: none;
-//     &:hover, &:active, &:focus {
-//       border: 0;
-//       background: none;
-//     }
-//   }
-  margin-bottom: 2rem;
+  /*
+   * 1. Pull the nav up over the stream, so the stream border is flush.
+   */
+
+  @include mq($from: m) {
+    position: absolute; /* [1] */
+    height: 5rem;
+  }
 }
 
 .live-indicator {
-  position: absolute;
-  left: 0;
-  top: 0;
+  display: inline-block;
+
+  @include mq($until: m) {
+    margin-bottom: 1rem;
+  }
+  @include mq($from: m) {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 
 // Needs a component class so we don't touch all the objects on the page.
 .loader {
   position: absolute;
-  left: 150px;
-  top: 8px;
   margin: 0;
+  left: 112px;
+  top: 6px;
+
+  @include mq($from: m) {
+    left: 150px;
+    top: 8px;
+  }
 }
 
 .stream-navigation  {
-  margin-left: 180px;
+  @include mq($until: m) {
+    margin-bottom: 1rem;
+  }
+
+  @include mq($from: m) {
+    margin-left: 180px;
+  }
 }
 
 .stream-navigation__item {
