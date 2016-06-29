@@ -13,6 +13,9 @@ if (typeof window !== 'undefined') {
 }
 
 var Navigation = React.createClass({
+  propTypes: {
+    selectedEvent: React.PropTypes.string.isRequired
+  },
 
   // handleClick: function(name) {
   //   if (window._gs) {
@@ -43,7 +46,7 @@ var Navigation = React.createClass({
 
           <LiveIndicator />
 
-          <LoadingSpinner isVisible={ this.props.isFetching } />
+          <LoadingSpinner />
 
           <ul className="stream-navigation gs-o-list-inline gs-o-list-inline--spaced">
             <li className="stream-navigation__item">
@@ -81,18 +84,12 @@ var mapDispatchToProps = dispatch => {
 };
 
 var mapStateToProps = state => {
-  // console.log(state.events.selectedEvent);
   return {
-    isFetching: state.events.isFetching,
     selectedEvent: state.events.selectedEvent
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps// ,
-  // null,
-  // {
-  //   pure: false
-  // }
+  mapDispatchToProps
 )(Navigation);
