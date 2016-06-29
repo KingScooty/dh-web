@@ -5,6 +5,7 @@
 @import '../../../static/sass/vendor/sassline/sassline-shared';
 
 .HUD {
+  position: relative;
   height: 5rem;
   // line-height: 2rem;
   @include fontsize(theta, all);
@@ -34,6 +35,16 @@
 
 .live-indicator {
   position: absolute;
+  left: 0;
+  top: 0;
+}
+
+// Needs a component class so we don't touch all the objects on the page.
+.loader {
+  position: absolute;
+  left: 150px;
+  top: 8px;
+  margin: 0;
 }
 
 .stream-navigation  {

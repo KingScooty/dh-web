@@ -42,7 +42,7 @@ var Navigation = React.createClass({
   render: function () {
     return (
       <div className="HUD">
-        <div className="container">
+        {/*<div className="container">*/}
 
           <LiveIndicator />
 
@@ -69,7 +69,7 @@ var Navigation = React.createClass({
             </li>
           </ul>
 
-        </div>
+        {/*</div>*/}
       </div>
     );
   }
