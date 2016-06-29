@@ -34,8 +34,8 @@ export default (history, dispatch) => {
       <Route component={ App } ignoreScrollBehavior>
         <Route path="/" component={ Home }>
           <Route components={ {Stream: Stream } } >
-            <IndexRedirect to="/2015" />
-            <Route name="live" path="/2015" components={ {live: LiveFeed, archive: ArchiveFeed } } onEnter={ fetchPosts } />
+            <IndexRedirect to="/2016" />
+            <Route name="live" path="/2016" components={ {live: LiveFeed, archive: ArchiveFeed } } onEnter={ fetchPosts } />
             <Route name="year" path="/:year" components={ {archive: ArchiveFeed } } onEnter={ fetchPosts } />
           </Route>
         </Route>
