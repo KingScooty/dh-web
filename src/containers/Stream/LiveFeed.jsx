@@ -3,11 +3,19 @@ import { connect } from 'react-redux';
 import ioClient from 'socket.io-client';
 import { toggleStatus } from '../../actions';
 
+import Post from '../../components/Post';
+
 var socket;
 
 var LiveFeed = React.createClass({
   propTypes: {
     toggleStatus: React.PropTypes.func.isRequired
+  },
+
+  getInitialState: function () {
+    return {
+      posts: []
+    };
   },
 
   componentDidMount: function () {
@@ -52,9 +60,13 @@ var LiveFeed = React.createClass({
       this.props.toggleStatus(true);
     });
 
-    socket.on('incomingTweet', (tweet) => {
-      console.log('INCOMING EVENT: ', tweet);
-      // var newArray = this.state.tweets.slice();
+    socket.on('incomingTweet', (post) => {
+      console.log('INCOMING EVENT: ', post);
+
+      var postCollection = this.state.posts.slice();
+      postCollection.push(post);
+
+      this.setState({posts: postCollection.reverse()});
     });
 
     socket.on('disconnect', () => {
@@ -63,9 +75,18 @@ var LiveFeed = React.createClass({
     });
   },
 
+  renderPosts() {
+    return this.state.posts.map(function (post, index) {
+      return <Post {...post} key={ index } />;
+    });
+  },
+
   render: function () {
+    var posts = this.renderPosts();
     return (
-      <h1>[LIVE!] FEED!</h1>
+      <div>
+        { posts }
+      </div>
     );
   }
 });
