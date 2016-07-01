@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import PostMediaImage from './PostMediaImage';
-// import ReactHeight from 'react-height';
 
 var PostMedia = React.createClass({
   propTypes: {
@@ -22,9 +21,6 @@ var PostMedia = React.createClass({
     media: React.PropTypes.string,
     href: React.PropTypes.string
   },
-
-  // <ReactHeight onHeightReady={ height => console.log(height) } key={ index }>
-  // </ReactHeight>
 
   imgElement: function (media) {
     return media.map((media, index) => {
@@ -50,6 +46,18 @@ var PostMedia = React.createClass({
     else if (this.props.media) {
       return this.imgElement([{media_url: this.props.media}]);
     }
+  },
+
+  detectMediaType: function () {
+
+    if (isVine) {
+
+    }
+
+    if (isInstagram) {
+
+    }
+
   },
 
   render: function () {

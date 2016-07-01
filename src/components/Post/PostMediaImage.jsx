@@ -10,17 +10,9 @@ const getImageSize = function getImageSize(imageUrl) {
   return isRetina() ? `${imageUrl}:large` : imageUrl;
 };
 
-// const handleVerticalRhythm = function handleVerticalRhythm(e) {
-//   this.setState({windowWidth: window.innerWidth});
-// };
-
 class PostMediaImage extends Component {
   render() {
     const imgUrl = getImageSize(this.props.media_url);
-    // const styles = {
-    //   borderRadius: '5px',
-    //   overflow: 'hidden'
-    // };
 
     return (
       <div className="u-crop-rounded">
