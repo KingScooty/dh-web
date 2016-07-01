@@ -35,9 +35,9 @@ var Navigation = React.createClass({
   //   console.log('On click handler has been triggered for', event);
   //   this.props.fetchEventIfNeeded(event);
   // },
-  shouldComponentUpdate: function (nextProps) {
-    return nextProps.selectedEvent !== this.props.selectedEvent;
-  },
+  // shouldComponentUpdate: function (nextProps) {
+  //   return nextProps.selectedEvent !== this.props.selectedEvent;
+  // },
 
   render: function () {
     return (
@@ -91,5 +91,7 @@ var mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  null,
+  { pure: false }
 )(Navigation);
