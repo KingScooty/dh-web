@@ -20,3 +20,7 @@ export function isVine(urls) {
 export function isInstagram(urls) {
   return urls.filter(containsString.bind(null, 'instagram'));
 }
+
+// export function isTwitter() {
+//
+// }
