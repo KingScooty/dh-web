@@ -110,8 +110,8 @@ describe('mediaHelpers', function () {
 
   describe('getShortKeys()', function () {
     var urls = [
-      {url: 'http://instagram.com/4234234'},
-      {url: 'http://instagram.com/546'},
+      {url: 'http://instagram.com/4234234/'},
+      {url: 'http://instagram.com/v/v4323/546'},
       {url: 'http://instagram.com/54634235235'}
     ];
 
