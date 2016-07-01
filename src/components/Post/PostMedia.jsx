@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import PostMediaImage from './PostMediaImage';
+import PostMediaTwitter from './PostMediaTwitter';
 
 var PostMedia = React.createClass({
   propTypes: {
@@ -18,55 +18,21 @@ var PostMedia = React.createClass({
         })
       )
     }),
-    media: React.PropTypes.string,
+    // media: React.PropTypes.string,
     href: React.PropTypes.string
   },
 
-  imgElement: function (media) {
-    return media.map((media, index) => {
-      return (
-        <div className="stream-post__media-item" key={ index }>
-          <a href={ this.props.href }>
-            <PostMediaImage {...media } />
-          </a>
-        </div>
-      );
-    });
-  },
-
-  getMedia: function () {
-    if (this.props.extended_entities &&
-        this.props.extended_entities.media) {
-      return this.imgElement(this.props.extended_entities.media);
-    }
-    else if (this.props.entities &&
-             this.props.entities.media) {
-      return this.imgElement(this.props.entities.media);
-    }
-    else if (this.props.media) {
-      return this.imgElement([{media_url: this.props.media}]);
-    }
-  },
-
-  detectMediaType: function () {
-
-    if (isVine) {
-
-    }
-
-    if (isInstagram) {
-
-    }
-
-  },
-
   render: function () {
-    const media = this.getMedia();
-    if (!media) return false;
+    // const media = this.getMedia();
+    // if (!media) return false;
 
     return (
       <div className="stream-post__media">
-        { media }
+        <PostMediaTwitter
+          entities={ this.props.entities }
+          extended_entities={ this.props.extended_entities }
+          href={ this.props.href }
+          />
       </div>
     );
   }
