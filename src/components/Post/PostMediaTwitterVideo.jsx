@@ -49,7 +49,7 @@ const PostMediaTwitterVideo = createClass({
         <a href={ this.props.href }>
           <div className="u-crop-rounded">
             <VerticalRhythm>
-              <ResponsiveImage { ...this.props.sizes }>
+              <ResponsiveImage { ...this.props.sizes } disablePlaceholder={ true }>
                 <video className="stream-post__video" autoPlay loop controls muted>
                   <source src={ videoSrc } type={ videoType } />
                 </video>
