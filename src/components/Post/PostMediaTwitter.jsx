@@ -1,6 +1,7 @@
 import React, { createClass, PropTypes } from 'react';
 
 import PostMediaTwitterPhoto from './PostMediaTwitterPhoto';
+import PostMediaTwitterVideo from './PostMediaTwitterVideo';
 
 const PostMedia = createClass({
   propTypes: {
@@ -8,6 +9,7 @@ const PostMedia = createClass({
       media: PropTypes.arrayOf(
         PropTypes.shape({
           media_url: PropTypes.string.isRequired,
+          type: PropTypes.string.isRequired,
           sizes: PropTypes.object.isRequired
         })
       )
@@ -25,10 +27,10 @@ const PostMedia = createClass({
 
   imgElement: function imgElement(media) {
     return media.map((media, index) => {
-      console.log(media);
-      return (
-        <PostMediaTwitterPhoto { ...media } href={ this.props.href } key={ index } />
-      );
+      if (media.type === 'video') {
+        return <PostMediaTwitterVideo { ...media } key={ index } />;
+      }
+      return <PostMediaTwitterPhoto { ...media } href={ this.props.href } key={ index } />;
     });
   },
 
