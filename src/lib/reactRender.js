@@ -109,7 +109,7 @@ const renderBody = (context, renderProps) => {
           <script type="text/javascript" src="//use.typekit.net/zsn1cix.js"></script>
           <script>try{Typekit.load({active:function(){var e=document.querySelector(".event");window.dh_el_event_current_height=e.clientHeight}})}catch(e){}</script>
       </head>
-      <body class="show-grid">
+      <body class="show-grid--off">
           <div id="app">${body}</div>
 
           <script charSet="utf-8" id="__INITIAL_STATE__" type="application/json">${safeStringify(initialState)}</script>
