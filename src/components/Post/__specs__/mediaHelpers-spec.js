@@ -13,7 +13,7 @@ describe('mediaHelpers', function () {
 
   describe('containsString()', function () {
     var url = {
-      url: 'http://vine.co/123456'
+      expanded_url: 'http://vine.co/123456'
     };
 
     it('returns true if a string is found within a url object', function () {
@@ -39,9 +39,9 @@ describe('mediaHelpers', function () {
 
     it('returns false if there are no vine links', function () {
       var urls = [
-        {url: 'http://instagram.com/4234234'},
-        {url: 'http://instagram.com/546'},
-        {url: 'http://instagram.com/54634235235'}
+        {expanded_url: 'http://instagram.com/4234234'},
+        {expanded_url: 'http://instagram.com/546'},
+        {expanded_url: 'http://instagram.com/54634235235'}
       ];
       var isVine = mediaHelpers.isVine(urls);
       expect(isVine).to.be.empty;
@@ -49,13 +49,13 @@ describe('mediaHelpers', function () {
 
     it('returns an array of existing vine entities', function () {
       var urls = [
-        {url: 'http://vine.co/4234234'},
-        {url: 'http://instagram.com/546'},
-        {url: 'http://vine.co/54634235235'}
+        {expanded_url: 'http://vine.co/4234234'},
+        {expanded_url: 'http://instagram.com/546'},
+        {expanded_url: 'http://vine.co/54634235235'}
       ];
       var expectedUrls = [
-        {url: 'http://vine.co/4234234'},
-        {url: 'http://vine.co/54634235235'}
+        {expanded_url: 'http://vine.co/4234234'},
+        {expanded_url: 'http://vine.co/54634235235'}
       ];
 
       var isVine = mediaHelpers.isVine(urls);
@@ -78,9 +78,9 @@ describe('mediaHelpers', function () {
 
     it('returns false if there are no instagram links', function () {
       var urls = [
-        {url: 'http://vine.co/4234234'},
-        {url: 'http://vine.co/546'},
-        {url: 'http://vine.co/54634235235'}
+        {expanded_url: 'http://vine.co/4234234'},
+        {expanded_url: 'http://vine.co/546'},
+        {expanded_url: 'http://vine.co/54634235235'}
       ];
       var isInstagram = mediaHelpers.isInstagram(urls);
       expect(isInstagram).to.be.empty;
@@ -88,13 +88,13 @@ describe('mediaHelpers', function () {
 
     it('returns an array of existing instagram entities', function () {
       var urls = [
-        {url: 'http://instagram.com/4234234'},
-        {url: 'http://vine.co/546'},
-        {url: 'http://instagram.com/54634235235'}
+        {expanded_url: 'http://instagram.com/4234234'},
+        {expanded_url: 'http://vine.co/546'},
+        {expanded_url: 'http://instagram.com/54634235235'}
       ];
       var expectedUrls = [
-        {url: 'http://instagram.com/4234234'},
-        {url: 'http://instagram.com/54634235235'}
+        {expanded_url: 'http://instagram.com/4234234'},
+        {expanded_url: 'http://instagram.com/54634235235'}
       ];
 
       var isInstagram = mediaHelpers.isInstagram(urls);
@@ -110,9 +110,9 @@ describe('mediaHelpers', function () {
 
   describe('getShortKeys()', function () {
     var urls = [
-      {url: 'http://instagram.com/4234234/'},
-      {url: 'http://instagram.com/v/v4323/546'},
-      {url: 'http://instagram.com/54634235235'}
+      {expanded_url: 'http://instagram.com/4234234/'},
+      {expanded_url: 'http://instagram.com/v/v4323/546'},
+      {expanded_url: 'http://instagram.com/54634235235'}
     ];
 
     it('returns an array of shorkeys for all urls', function () {

@@ -1,12 +1,12 @@
 import { parse as urlParse } from 'url';
 
-export function containsString(string, { url }) {
-  return url.indexOf(string) > -1;
+export function containsString(string, { expanded_url }) {
+  return expanded_url.indexOf(string) > -1;
 }
 
 export function getShortKeys(urls) {
-  return urls.map(function ({ url }) {
-    return urlParse(url).pathname.split('/')
+  return urls.map(function ({ expanded_url }) {
+    return urlParse(expanded_url).pathname.split('/')
     // Remove empty strings from array
     .filter(v => v !== '')
     .pop();
@@ -18,9 +18,6 @@ export function isVine(urls) {
 }
 
 export function isInstagram(urls) {
+  console.log('urls', urls);
   return urls.filter(containsString.bind(null, 'instagram'));
 }
-
-// export function isTwitter() {
-//
-// }
