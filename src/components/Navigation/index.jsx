@@ -86,5 +86,5 @@ var mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Navigation);
