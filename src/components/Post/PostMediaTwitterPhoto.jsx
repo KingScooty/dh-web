@@ -18,7 +18,7 @@ const PostMediaTwitterPhoto = createClass({
         h: PropTypes.number.isRequired
       }).isRequired
     }).isRequired,
-    href: PropTypes.string
+    href: PropTypes.string.isRequired
   },
 
   // Maybe move towards srcset and just list the sizes out in <img /> as this
