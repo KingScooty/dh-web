@@ -2,6 +2,7 @@ import React, { createClass, PropTypes } from 'react';
 
 import PostMediaTwitterPhoto from './PostMediaTwitterPhoto';
 import PostMediaTwitterVideo from './PostMediaTwitterVideo';
+// import PostMediaTwitterGif from './PostMediaTwitterGif';
 
 const PostMedia = createClass({
   propTypes: {
@@ -27,9 +28,12 @@ const PostMedia = createClass({
 
   imgElement: function imgElement(media) {
     return media.map((media, index) => {
-      if (media.type === 'video') {
+      if (media.type === 'video' || media.type === 'animated_gif') {
         return <PostMediaTwitterVideo { ...media } key={ index } />;
       }
+      // if (media.type === 'animated_gif') {
+      //   return <PostMediaTwitterGif { ...media } key={ index } />;
+      // }
       return <PostMediaTwitterPhoto { ...media } href={ this.props.href } key={ index } />;
     });
   },
