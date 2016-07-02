@@ -18,6 +18,5 @@ export function isVine(urls) {
 }
 
 export function isInstagram(urls) {
-  console.log('urls', urls);
   return urls.filter(containsString.bind(null, 'instagram'));
 }
