@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 
 /**
  * Wraps a component with a responsive image div if a width and height are
@@ -11,13 +12,21 @@ const getImgRatio = function getImgRatio(width, height) {
   return 100 / (width / height);
 };
 
-const responsiveImageWrapper = function responsiveImageWrapper(width, height, children) {
+const responsiveImageWrapper = function responsiveImageWrapper(width, height, disablePlaceholder, children) {
+
+  var responsiveImageClasses = classNames(
+    'gs-o-responsive-image',
+    {
+      'gs-o-responsive-image--no-placeholder': disablePlaceholder
+    }
+  );
+
   return (
     <div
       style={
         { paddingBottom: `${getImgRatio(width, height)}%` }
       }
-      className="gs-o-responsive-image"
+      className={ responsiveImageClasses }
       >
       { children }
     </div>
@@ -30,6 +39,7 @@ class ResponsiveImage extends Component {
       return responsiveImageWrapper(
         this.props.medium.w,
         this.props.medium.h,
+        this.props.disablePlaceholder,
         this.props.children
       );
     }
@@ -44,6 +54,7 @@ ResponsiveImage.propTypes = {
     w: PropTypes.number,
     h: PropTypes.number
   }),
+  disablePlaceholder: PropTypes.bool,
   children: PropTypes.node.isRequired
 };
 

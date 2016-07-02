@@ -72,7 +72,7 @@ $mq-breakpoints: (
     border-radius: 10px;
     text-shadow: none;
 
-    &.active, &:focus {
+    &.active {
       background-color: white;
       color: #00223E;
     }

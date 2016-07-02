@@ -1,11 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
-import PostMediaImage from './PostMediaImage';
-// import ReactHeight from 'react-height';
 
-var PostMedia = React.createClass({
+import * as mediaHelpers from './mediaHelpers';
+import PostMediaTwitter from './PostMediaTwitter';
+import PostMediaInstagram from './PostMediaInstagram';
+
+const PostMedia = React.createClass({
   propTypes: {
     entities: React.PropTypes.shape({
+      urls: React.PropTypes.array.isRequired,
       media: React.PropTypes.arrayOf(
         React.PropTypes.shape({
           media_url: React.PropTypes.string.isRequired
@@ -19,46 +22,33 @@ var PostMedia = React.createClass({
         })
       )
     }),
-    media: React.PropTypes.string,
+    // media: React.PropTypes.string,
     href: React.PropTypes.string
   },
 
-  // <ReactHeight onHeightReady={ height => console.log(height) } key={ index }>
-  // </ReactHeight>
+  instagram: function () {
+    const images = mediaHelpers.isInstagram(this.props.entities.urls);
+    if (!images.length) return;
 
-  imgElement: function (media) {
-    return media.map((media, index) => {
-      return (
-        <div className="stream-post__media-item" key={ index }>
-          <a href={ this.props.href }>
-            <PostMediaImage {...media } />
-          </a>
-        </div>
-      );
+    const shortcodes = mediaHelpers.getShortKeys(images);
+    return shortcodes.map(function (shortcode, index) {
+      return <PostMediaInstagram shortcode={ shortcode } key={ index } />;
     });
   },
 
-  getMedia: function () {
-    if (this.props.extended_entities &&
-        this.props.extended_entities.media) {
-      return this.imgElement(this.props.extended_entities.media);
-    }
-    else if (this.props.entities &&
-             this.props.entities.media) {
-      return this.imgElement(this.props.entities.media);
-    }
-    else if (this.props.media) {
-      return this.imgElement([{media_url: this.props.media}]);
-    }
-  },
-
   render: function () {
-    const media = this.getMedia();
-    if (!media) return false;
+    // const media = this.getMedia();
+    // if (!media) return false;
 
+    // Need to hide this media div if there is no media!!
     return (
       <div className="stream-post__media">
-        { media }
+        <PostMediaTwitter
+          entities={ this.props.entities }
+          extended_entities={ this.props.extended_entities }
+          href={ this.props.href }
+          />
+          { this.instagram() }
       </div>
     );
   }

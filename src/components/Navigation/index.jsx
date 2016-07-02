@@ -35,41 +35,36 @@ var Navigation = React.createClass({
   //   console.log('On click handler has been triggered for', event);
   //   this.props.fetchEventIfNeeded(event);
   // },
-  shouldComponentUpdate: function (nextProps) {
-    return nextProps.selectedEvent !== this.props.selectedEvent;
-  },
 
   render: function () {
     return (
       <div className="HUD">
-        {/*<div className="container">*/}
 
-          <LiveIndicator />
+        <LiveIndicator />
 
-          <LoadingSpinner />
+        <LoadingSpinner />
 
-          <ul className="stream-navigation gs-o-list-inline gs-o-list-inline--spaced">
-            <li className="stream-navigation__item">
-              <Link activeClassName="active" to="/2016">2016</Link>
-            </li>
-            <li className="stream-navigation__item">
-              <Link activeClassName="active" to="/halloween15">Halloween ’15</Link>
-            </li>
-            <li className="stream-navigation__item">
-              <Link activeClassName="active" to="/2015">2015</Link>
-            </li>
-            <li className="stream-navigation__item">
-              <Link activeClassName="active" to="/2014">2014</Link>
-            </li>
-            <li className="stream-navigation__item">
-              <Link activeClassName="active" to="/2013">2013</Link>
-            </li>
-            <li className="stream-navigation__item">
-              <Link activeClassName="active" to="/2012">2012</Link>
-            </li>
-          </ul>
+        <ul className="stream-navigation gs-o-list-inline gs-o-list-inline--spaced">
+          <li className="stream-navigation__item">
+            <Link activeClassName="active" to="/2016">2016</Link>
+          </li>
+          <li className="stream-navigation__item">
+            <Link activeClassName="active" to="/halloween15">Halloween ’15</Link>
+          </li>
+          <li className="stream-navigation__item">
+            <Link activeClassName="active" to="/2015">2015</Link>
+          </li>
+          <li className="stream-navigation__item">
+            <Link activeClassName="active" to="/2014">2014</Link>
+          </li>
+          <li className="stream-navigation__item">
+            <Link activeClassName="active" to="/2013">2013</Link>
+          </li>
+          <li className="stream-navigation__item">
+            <Link activeClassName="active" to="/2012">2012</Link>
+          </li>
+        </ul>
 
-        {/*</div>*/}
       </div>
     );
   }
