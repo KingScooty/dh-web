@@ -31,11 +31,11 @@ body {
   background-position: top center, 0 0;
   background-size: auto, 100% 1rem;
 
-  @include mq($until: s) {
-    background-size: 300%, 100% 1rem;
-  }
-  @include mq($from: s, $until: m) {
-    background-size: 200%, 100% 1rem;
+  // @include mq($until: s) {
+  //   background-size: 300%, 100% 1rem;
+  // }
+  @include mq($until: m) {
+    background-size: 210%, 100% 1rem;
   }
 }
 
@@ -56,11 +56,11 @@ body {
   transition: opacity 1s cubic-bezier(.4,0,.2,1);
   transition-delay: 1.2s;
 
-  @include mq($until: s) {
-    background-size: 300%;
-  }
-  @include mq($from: s, $until: m) {
-    background-size: 200%;
+  // @include mq($until: s) {
+  //   background-size: 300%;
+  // }
+  @include mq($until: m) {
+    background-size: 210%;
   }
 
   &.active {
