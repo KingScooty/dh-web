@@ -86,5 +86,7 @@ var mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  null,
+  { pure: false }
 )(Navigation);
