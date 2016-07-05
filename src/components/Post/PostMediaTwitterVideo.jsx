@@ -27,12 +27,24 @@ const PostMediaTwitterVideo = createClass({
     href: PropTypes.string
   },
 
+  getHighBitRatevideo: function getHighBitRatevideo(video) {
+    var mp4Media = video.variants.filter(function (variant) {
+      return variant.content_type === 'video/mp4';
+    });
+
+    var sorted = mp4Media.sort(function (a, b) {
+      return b.bitrate - a.bitrate;
+    });
+
+    return sorted[0];
+  },
+
   getVideoSrc: function getVideo(video) {
-    return video.variants[0].url;
+    return video.url;
   },
 
   getVideoType: function getVideoType(video) {
-    return video.variants[0].content_type;
+    return video.content_type;
   },
 
   // getVideoSize: function getVideoSize(sizes) {
@@ -40,8 +52,9 @@ const PostMediaTwitterVideo = createClass({
   // },
 
   render: function render() {
-    const videoSrc = this.getVideoSrc(this.props.video_info);
-    const videoType = this.getVideoType(this.props.video_info);
+    const highBitRateVideo = this.getHighBitRatevideo(this.props.video_info);
+    const videoSrc = this.getVideoSrc(highBitRateVideo);
+    const videoType = this.getVideoType(highBitRateVideo);
     // const videoSize = this.getVideoSize(this.props.sizes);
 
     return (
