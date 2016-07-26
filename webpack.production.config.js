@@ -36,7 +36,10 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'postcss-loader', 'sass-loader'])
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: ['css-loader', 'postcss-loader', 'sass-loader']
+        })
         // loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'postcss-loader', 'sass-loader')
         // loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
         // loader: ExtractTextPlugin.extract('!sass-loader!postcss-loader')
@@ -64,7 +67,11 @@ module.exports = {
         to: path.join(__dirname, 'dist/static/svg/')
       }
     ]),
-    new ExtractTextPlugin('css/main.css', {allChunks: false}),
+    new ExtractTextPlugin({
+      filename: 'css/main.css',
+      disable: false,
+      allChunks: false
+    }),
     new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
     new webpack.optimize.DedupePlugin(),
     new OptimizeCssAssetsPlugin({

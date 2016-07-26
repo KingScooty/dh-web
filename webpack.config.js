@@ -38,7 +38,10 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         // loader: 'style-loader!css-loader!postcss-loader',
         // loaders: ['style', 'css', 'postcss', 'sass']
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: ['css-loader', 'postcss-loader', 'sass-loader']
+        })
       }
     ]
   },
@@ -60,7 +63,11 @@ module.exports = {
         to: path.join(__dirname, '.temp/static/svg/')
       }
     ]),
-    new ExtractTextPlugin('css/main.css', {allChunks: false}),
+    new ExtractTextPlugin({
+      filename: 'css/main.css',
+      disable: false,
+      allChunks: false
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
