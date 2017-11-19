@@ -1,6 +1,8 @@
 import React from 'react';
 import marked from 'marked';
 
+import styles from './styles'
+
 // if (typeof window !== 'undefined') {
 //   require('./sass/main.scss');
 // }
@@ -25,6 +27,8 @@ const footer = 'footer shizzle';
 
 export default () => (
 	<div className="event">
+
+		<style jsx>{styles}</style>
 
 		<div className="event__header">
 			<h1 className="lead-title">{ titleLead }</h1>
