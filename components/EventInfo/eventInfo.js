@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import marked from 'marked';
 
 import styles from './styles'
