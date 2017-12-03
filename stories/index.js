@@ -15,4 +15,4 @@ storiesOf('Button', module)
  	.add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>);
 
 storiesOf('EventInfo', module)
-	.add('rawr', ()=> <EventInfo />);
+	.add('main', () => <EventInfo titleLead="DIGITAL HEROES" titleSupport="A SUPERHERO THEMED NIGHT OUT <br> 9TH JULY 2016. NQ, MANCHESTER." footer="LIVE TWITTER FEED&mdash;#digitalheroes2016" />);

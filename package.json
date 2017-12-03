@@ -11,11 +11,11 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
-	"jest": {
-		"setupFiles": [
-			"<rootDir>/shim.js"
-		]
-	},
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/shim.js"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
