@@ -8,11 +8,22 @@ import { Button, Welcome } from '@storybook/react/demo';
 
 import EventInfo from '../components/EventInfo/eventInfo';
 
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
+storiesOf('Welcome', module).add('to Storybook', () => (
+	<Welcome showApp={linkTo('Button')} />
+));
 
 storiesOf('Button', module)
-	.add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
- 	.add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>);
+	.add('with text', () => (
+		<Button onClick={action('clicked')}>Hello Button</Button>
+	))
+	.add('with some emoji', () => (
+		<Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
+	));
 
-storiesOf('EventInfo', module)
-	.add('rawr', ()=> <EventInfo />);
+storiesOf('EventInfo', module).add('main', () => (
+	<EventInfo
+		titleLead="DIGITAL HEROES"
+		titleSupport="A SUPERHERO THEMED NIGHT OUT <br> 9TH JULY 2016. NQ, MANCHESTER."
+		footer="LIVE TWITTER FEED&mdash;#digitalheroes2016"
+	/>
+));
