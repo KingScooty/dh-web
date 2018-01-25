@@ -9,21 +9,35 @@
     "build": "next build",
     "start": "next start",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prettier": "prettier --single-quote --write 'components/**/*.js'",
+    "precommit": "lint-staged"
   },
-	"jest": {
-		"setupFiles": [
-			"<rootDir>/shim.js"
-		]
-	},
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/shim.js"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint-plugin-flowtype": "^2.42.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.0",
     "fast-redux": "~0.3.0",
     "isomorphic-unfetch": "^2.0.0",
     "marked": "^0.3.6",
     "next": "^4.1.4",
     "next-redux-wrapper": "~1.3.2",
+    "prettier": "^1.10.2",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
@@ -36,7 +50,11 @@
     "@storybook/addon-links": "^3.2.16",
     "@storybook/react": "^3.2.16",
     "enzyme": "^3.2.0",
+    "eslint": "^4.16.0",
+    "eslint-config-prettier": "^2.9.0",
+    "husky": "^0.14.3",
     "jest": "^21.2.1",
+    "lint-staged": "^6.0.1",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.1.1",
     "redux-devtools-extension": "~2.13.2"
