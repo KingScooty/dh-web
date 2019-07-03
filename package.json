@@ -12,7 +12,9 @@
     "build": "npm run buildClient && npm run buildServer",
     "buildClient": "NODE_ENV=production ./node_modules/.bin/webpack -p --define process.env.NODE_ENV='\"production\"' --progress --config webpack.production.config.js",
     "buildServer": "NODE_ENV=production ./node_modules/.bin/webpack -p --define process.env.NODE_ENV='\"production\"' --progress --config webpack.server.config.js",
-    "analyse": "./node_modules/.bin/webpack -p --define process.env.NODE_ENV='\"production\"' --json --config webpack.production.config.js | ./node_modules/.bin/webpack-bundle-size-analyzer"
+    "analyse": "./node_modules/.bin/webpack -p --define process.env.NODE_ENV='\"production\"' --json --config webpack.production.config.js | ./node_modules/.bin/webpack-bundle-size-analyzer",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "Scotty Vernon <scott.vernon@gmail.com> (http://wildflame.co.uk)",
@@ -90,7 +92,8 @@
     "redux-thunk": "^2.1.0",
     "socket.io": "^1.4.6",
     "spdy": "^3.3.1",
-    "twitter-text": "^1.13.4"
+    "twitter-text": "^1.13.4",
+    "snyk": "^1.189.0"
   },
   "xo": {
     "space": true,
@@ -131,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "snyk": true
 }
