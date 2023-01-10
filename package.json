@@ -88,8 +88,8 @@
     "react-timeago": "^3.0.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
-    "socket.io": "^1.4.6",
-    "spdy": "^3.3.1",
+    "socket.io": "^2.1.0",
+    "spdy": "^4.0.0",
     "twitter-text": "^1.13.4"
   },
   "xo": {
